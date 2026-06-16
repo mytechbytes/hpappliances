@@ -1,0 +1,30 @@
+---
+import site from '../data/site.json';
+import ThemeSelect from './ThemeSelect.astro';
+---
+
+{/* Pure-CSS drawer: the checkbox + drawer are siblings so
+    .hp-drawer-toggle:checked ~ .hp-drawer opens it. No JS. */}
+<input type="checkbox" id="hp-drawer" class="hp-drawer-toggle" aria-hidden="true" />
+<aside
+  class="hp-drawer fixed inset-0 z-[90] flex flex-col"
+  style="background:#1A2340;padding:26px clamp(24px,7vw,48px);"
+>
+  <div class="flex items-center justify-between">
+    <span class="flex items-center gap-3">
+      <img src={site.brand.logoWhite} alt="" class="w-10 h-10" />
+      <span class="font-display text-white text-lg font-bold">{site.brand.name}</span>
+    </span>
+    <label for="hp-drawer" aria-label="Close menu" class="text-white text-[34px] leading-none cursor-pointer">&times;</label>
+  </div>
+
+  <div class="flex flex-col gap-[6px] mt-10">
+    {site.nav.map((item) => (
+      <a href={item.href} class="text-white no-underline font-display text-[28px] py-[11px] border-b border-white/10">{item.label}</a>
+    ))}
+  </div>
+
+  <ThemeSelect variant="drawer" />
+
+  <a href={site.cta.href} class="text-center text-onaccent bg-accent no-underline font-semibold p-4 rounded-xl text-base">{site.cta.label}</a>
+</aside>

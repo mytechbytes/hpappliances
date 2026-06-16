@@ -1,0 +1,39 @@
+---
+import site from '../data/site.json';
+const { product: p, variant = 'catalogue' } = Astro.props;
+const href = `/products/${p.slug}.html`;
+---
+
+{variant === 'highlight' ? (
+  <article data-reveal class="hp-card" data-cat={p.category}>
+    <div class="relative flex items-center justify-center p-[22px] bg-imgbg" style="aspect-ratio:4/3;">
+      <img src={p.image} alt={p.name} class="max-w-[88%] max-h-full object-contain mix-blend-multiply" />
+      <img src={site.brand.logo} alt="" class="absolute right-4 bottom-4 w-[30px] opacity-35" />
+    </div>
+    <div class="p-6 flex flex-col flex-1">
+      <h3 class="m-0 font-display font-bold text-[23px] text-ink">{p.name}</h3>
+      <p class="text-muted text-[14.5px] leading-[1.6] mt-[10px] mb-[18px]">{p.tagline}</p>
+      <div class="flex gap-2 flex-wrap mb-[22px]">{p.sizes.map((s) => <span class="hp-chip">{s}</span>)}</div>
+      <a href={href} class="mt-auto inline-flex items-center gap-2 text-accent-text no-underline font-semibold text-[14.5px]">View Details <span style="font-family:var(--font-mono)">&rarr;</span></a>
+    </div>
+  </article>
+) : (
+  <article data-reveal data-card class="hp-card" data-cat={p.category}>
+    <div class="relative flex items-center justify-center p-5 bg-imgbg" style="aspect-ratio:1;">
+      <img src={p.image} alt={p.name} class="max-w-[90%] max-h-full object-contain mix-blend-multiply" />
+      <span class="absolute left-[14px] top-[14px] font-mono text-[11px] tracking-[1px] text-accent-text bg-surface border border-border rounded-full px-[11px] py-1 whitespace-nowrap">{p.sizes[0]} – {p.sizes[p.sizes.length - 1]}</span>
+      <img src={site.brand.logo} alt="" class="absolute right-[14px] bottom-[14px] w-[26px] opacity-30" />
+    </div>
+    <div class="p-5 flex flex-col flex-1">
+      <h3 class="m-0 font-display font-bold text-[19px] text-ink">{p.name}</h3>
+      <div class="font-mono text-[11.5px] text-muted mt-[6px]">{p.material} · {p.sizes.join(' · ')}</div>
+      <div class="flex gap-[7px] flex-wrap mt-[14px] mb-[18px]">
+        {(p.addons || []).map((a) => <span class="font-mono text-[10.5px] text-body rounded-md px-[9px] py-1" style="background:var(--hp-warm);">+ {a}</span>)}
+      </div>
+      <div class="mt-auto flex items-center justify-between gap-[10px]">
+        <a href={href} class="inline-flex items-center gap-[6px] text-ink no-underline font-semibold text-[13.5px]">Details <span style="font-family:var(--font-mono)">&rarr;</span></a>
+        <a href={site.cta.href} class="no-underline text-onaccent bg-accent font-semibold text-[13px] px-4 py-[9px] rounded-full">Enquire</a>
+      </div>
+    </div>
+  </article>
+)}

@@ -1,0 +1,179 @@
+---
+import Base from '../../layouts/Base.astro';
+import site from '../../data/site.json';
+import data from '../../data/products.json';
+
+// One static HTML page per product, generated at build time from products.json.
+export function getStaticPaths() {
+  return data.products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }));
+}
+
+const { product: p } = Astro.props;
+const pad = (n) => String(n).padStart(2, '0');
+
+// Gallery = hero shot + the explicit thumbnail image paths from products.json.
+const images = [p.image, ...p.gallery];
+
+// Per-page CSS that wires the pure-CSS gallery (radio → visible image + active thumb).
+const galleryCss =
+  images
+    .map((_, i) => `#gal-${i}:checked~.hp-gallery-main .hp-gallery-img:nth-child(${i + 1}){opacity:1;z-index:2}`)
+    .join('') +
+  images.map((_, i) => `#gal-${i}:checked~.hp-thumbs label[for="gal-${i}"]{border-color:var(--hp-copper)}`).join('');
+
+const specRows = [
+  ['Product', p.name],
+  ['Material', p.material],
+  ['Available Sizes', p.sizes.join(' · ')],
+  ['Lid System', 'HP TriLock™ (triple-point)'],
+  ['Pressure Release', 'HP SafeValve™'],
+  ['Gasket', 'HP SafeSeal™ rubber'],
+  ['Compliance', 'ISI-standard'],
+  ['Add-ons', (p.addons || []).join(' · ') || '—'],
+  ['Min. Order', 'Retail & Bulk'],
+  ['Origin', 'Made in India'],
+];
+---
+
+<Base title={`${p.name} — ${site.brand.name}`} description={p.description} active="products">
+  <style is:global set:html={galleryCss}></style>
+
+  <!-- DETAIL -->
+  <section style="padding:104px clamp(20px,5vw,64px) clamp(50px,7vw,80px);">
+    <div class="mx-auto" style="max-width:1180px;">
+      <div data-anim class="font-mono text-xs tracking-[2px] text-muted mb-7" style="--d:.05s"><a href="/index.html" class="text-muted no-underline">HOME</a> &nbsp;/&nbsp; <a href="/products.html" class="text-muted no-underline">PRODUCTS</a> &nbsp;/&nbsp; <span class="text-accent-text">{p.name.toUpperCase()}</span></div>
+
+      <div class="grid items-start max-[860px]:grid-cols-1" style="grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);">
+
+        <!-- GALLERY (pure CSS) -->
+        <div data-anim class="hp-gallery sticky top-24 max-[860px]:static" style="--d:.15s">
+          {images.map((_, i) => <input type="radio" name="gal" id={`gal-${i}`} class="sr-only" checked={i === 0} />)}
+          <div class="hp-gallery-main relative flex items-center justify-center rounded-[22px]" style="background:var(--hp-warm);aspect-ratio:1;border:1px solid var(--hp-border);">
+            <div class="absolute" style="inset:42px;">
+              {images.map((src) => <img src={src} alt={p.name} class="hp-gallery-img" />)}
+            </div>
+            <span class="absolute left-5 top-5 font-mono text-[11px] tracking-[1px] bg-surface rounded-full px-[13px] py-[6px] whitespace-nowrap z-[3]" style="color:#2D7A4F;border:1px solid var(--hp-safeborder);">ISI-STANDARD</span>
+            <img src="/assets/hp-monogram.svg" alt="" class="absolute right-5 bottom-5 w-[34px] opacity-40 z-[3]" />
+          </div>
+          <div class="flex items-center gap-2 mt-4 mb-[10px]"><span class="font-mono text-[11px] tracking-[2px] text-muted">CHOOSE STYLE</span></div>
+          <div class="flex gap-2 mb-4">
+            {data.products.map((pp) => (
+              <a
+                href={`/products/${pp.slug}.html`}
+                class="flex-1 text-center font-sans text-[13px] font-semibold no-underline px-2 py-[10px] rounded-[10px]"
+                style={pp.slug === p.slug
+                  ? 'border:1.5px solid var(--hp-copper);background:var(--hp-copper);color:var(--hp-onaccent);'
+                  : 'border:1.5px solid var(--hp-border);background:var(--hp-surface);color:var(--hp-ink);'}
+              >{pp.name.split(' ')[0]}</a>
+            ))}
+          </div>
+          <div class="hp-thumbs grid gap-[10px]" style="grid-template-columns:repeat(5,1fr);">
+            {images.map((src, i) => (
+              <label for={`gal-${i}`} class="hp-thumb"><img src={src} alt={`${p.name} view ${i + 1}`} /></label>
+            ))}
+          </div>
+        </div>
+
+        <!-- INFO -->
+        <div data-anim style="--d:.28s">
+          <div class="hp-eyebrow mb-[14px]" style="letter-spacing:3px;">HP PRESSURE COOKER</div>
+          <h1 class="m-0 font-display font-extrabold text-ink" style="font-size:clamp(32px,4.4vw,52px);line-height:1.05;letter-spacing:-.5px;">{p.name}</h1>
+          <p class="text-body text-[16.5px] leading-[1.7] mt-[18px] max-w-[48ch]">{p.description}</p>
+
+          <div class="flex items-center gap-2 mb-[10px]" style="margin-top:26px;"><span class="font-mono text-[11px] tracking-[2px] text-muted">SELECT SIZE</span></div>
+          <div class="flex gap-[10px] flex-wrap">
+            {p.sizes.map((sz, i) => (
+              <Fragment>
+                <input type="radio" name="size" id={`size-${i}`} class="hp-size sr-only" checked={i === 0} />
+                <label for={`size-${i}`} class="hp-size-label">{sz}</label>
+              </Fragment>
+            ))}
+          </div>
+
+          <div class="flex items-center gap-2 mb-[10px]" style="margin-top:26px;"><span class="font-mono text-[11px] tracking-[2px] text-muted">ADD-ONS</span></div>
+          <div class="flex gap-3 flex-wrap">
+            {(p.addons || []).map((a, i) => (
+              <Fragment>
+                <input type="checkbox" id={`addon-${i}`} class="hp-addon sr-only" />
+                <label for={`addon-${i}`} class="hp-addon-label">
+                  <span class="hp-check"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="var(--hp-onaccent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>{a}
+                </label>
+              </Fragment>
+            ))}
+          </div>
+
+          <div class="flex flex-wrap gap-[14px] mt-[34px]">
+            <a href="/contact.html" class="hp-btn-primary text-base px-8 py-4">Enquire Now <span style="font-family:var(--font-mono)">&rarr;</span></a>
+            <a href="/products.html" class="hp-btn-outline text-base px-7 py-4">Back to Range</a>
+          </div>
+
+          <div class="grid gap-3 mt-[34px]" style="grid-template-columns:1fr 1fr;">
+            {['HP TriLock™ Lid', 'HP SafeValve™'].map((s) => (
+              <div class="flex items-center gap-[10px] rounded-xl px-[15px] py-[13px]" style="background:var(--hp-safe);border:1px solid var(--hp-safeborder);"><span class="w-[30px] h-[30px] rounded-lg flex items-center justify-center flex-none" style="background:#2D7A4F;"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span class="font-mono text-xs text-ink">{s}</span></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEC SHEET -->
+  <section style="background:var(--hp-warm);padding:clamp(56px,7vw,90px) clamp(20px,5vw,64px);">
+    <div class="mx-auto" style="max-width:1180px;">
+      <h2 class="m-0 mb-[30px] font-display font-bold text-ink" style="font-size:clamp(26px,3.2vw,38px);">Specifications</h2>
+      <div class="bg-surface rounded-[18px] overflow-hidden" style="border:1px solid var(--hp-border);">
+        <div class="grid max-[560px]:grid-cols-1" style="grid-template-columns:1fr 1fr;">
+          {specRows.map((r, i) => (
+            <div class="flex justify-between gap-[14px] px-[22px] py-4" style={`border-bottom:1px solid var(--hp-border);${i % 2 ? 'border-left:1px solid var(--hp-border);' : ''}`}>
+              <span class="font-mono text-xs tracking-[.5px] text-muted">{r[0]}</span>
+              <span class="text-[13.5px] font-medium text-ink text-right">{r[1]}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 360 VIEWER -->
+  <section class="bg-bg" style="padding:clamp(56px,7vw,90px) clamp(20px,5vw,64px);">
+    <div class="mx-auto text-center" style="max-width:1180px;">
+      <div class="hp-eyebrow mb-[14px]" style="letter-spacing:3px;">360° VIEW</div>
+      <h2 class="m-0 font-display font-bold text-ink" style="font-size:clamp(26px,3.2vw,38px);">See it from every angle</h2>
+      <p class="text-body text-base leading-[1.6] mt-[14px] mx-auto max-w-[46ch]">Drag the <span class="text-accent-text font-semibold">{p.name}</span> left or right to spin it through a full 360°.</p>
+      <div
+        data-360stage
+        data-prefix={p.spin.prefix}
+        data-frames={p.spin.frames}
+        class="relative mx-auto mt-[34px] rounded-[24px] overflow-hidden select-none"
+        style="max-width:520px;aspect-ratio:1;background:var(--hp-imgbg);border:1px solid var(--hp-border);cursor:grab;touch-action:pan-y;"
+      >
+        <img data-360img src={`${p.spin.prefix}-${pad(1)}.png`} alt={`${p.name} 360 view`} draggable="false" class="w-full h-full object-contain block pointer-events-none" />
+        <span class="absolute top-4 right-4 inline-flex items-center gap-[6px] font-mono text-[11px] tracking-[1px] text-white rounded-full px-3 py-[6px]" style="background:rgba(26,35,64,.7);">360&deg;</span>
+        <div data-360hint class="absolute left-1/2 bottom-[18px] -translate-x-1/2 inline-flex items-center gap-2 font-mono text-[11px] tracking-[1px] text-white rounded-full px-[15px] py-2 transition-opacity duration-300 pointer-events-none" style="background:rgba(26,35,64,.7);">&#8634; DRAG TO ROTATE</div>
+      </div>
+      <div class="mx-auto mt-4 h-1 rounded-full overflow-hidden" style="max-width:520px;background:var(--hp-border);"><div data-360bar class="h-full" style="width:4%;background:var(--hp-copper);transition:width .08s linear;"></div></div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section style="padding:clamp(56px,7vw,90px) clamp(20px,5vw,64px);">
+    <div class="mx-auto" style="max-width:1180px;">
+      <h2 class="m-0 mb-[30px] font-display font-bold text-ink" style="font-size:clamp(26px,3.2vw,38px);">You may also like</h2>
+      <div class="grid gap-[22px]" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));">
+        {data.products.map((pp) => (
+          <a href={`/products/${pp.slug}.html`} class="hp-card no-underline">
+            <div class="relative flex items-center justify-center p-[22px] bg-imgbg" style="aspect-ratio:1;">
+              <img src={pp.image} alt={pp.name} class="max-w-[88%] max-h-full object-contain mix-blend-multiply" />
+              <img src={site.brand.logo} alt="" class="absolute right-[14px] bottom-[14px] w-[26px] opacity-30" />
+            </div>
+            <div class="px-5 pt-[18px] pb-[22px]"><h3 class="m-0 font-display font-bold text-[19px] text-ink">{pp.name}</h3><div class="font-mono text-[11.5px] text-muted mt-[6px]">{pp.sizes.join(' · ')}</div></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import '../../scripts/viewer360.js';
+  </script>
+</Base>

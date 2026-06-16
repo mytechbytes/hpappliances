@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import data from '../../data/products.json';
+---
+
+<Base
+  title="Our Product Range — H.P. Industries"
+  description="Premium aluminium pressure cookers in three styles and eight sizes — every unit finished with HP's signature safety system."
+  active="products"
+>
+  <!-- PAGE HERO -->
+  <header class="relative overflow-hidden" style="padding:130px clamp(20px,5vw,64px) 54px;background:linear-gradient(160deg,var(--hp-bg) 0%,var(--hp-warm) 100%);">
+    <div class="absolute pointer-events-none" style="top:-20%;right:-6%;width:50vw;height:50vw;max-width:620px;max-height:620px;background:radial-gradient(circle,color-mix(in srgb,var(--hp-copper) 14%,transparent),transparent 62%);"></div>
+    <div class="relative mx-auto" style="max-width:1180px;">
+      <div data-anim class="font-mono text-xs tracking-[2px] text-muted mb-4" style="--d:.1s"><a href="/index.html" class="text-muted no-underline">HOME</a> &nbsp;/&nbsp; <span class="text-accent-text">PRODUCTS</span></div>
+      <h1 data-anim class="m-0 font-display font-extrabold text-ink" style="--d:.22s;font-size:clamp(38px,5.4vw,68px);line-height:1.04;letter-spacing:-1px;">Our Product Range</h1>
+      <p data-anim class="text-body leading-[1.7] max-w-[54ch] mt-[22px]" style="--d:.34s;font-size:clamp(16px,1.4vw,18.5px);">Premium aluminium pressure cookers in three styles and eight sizes — every unit finished with HP's signature safety system. Browse the range, then enquire for retail or bulk pricing.</p>
+    </div>
+  </header>
+
+  {/* Pure-CSS category filter: radios drive which cards show via sibling selectors. */}
+  <div class="hp-filter">
+    {data.categories.map((cat) => (
+      <input type="radio" name="cat" id={`cat-${cat.id}`} class="sr-only" checked={cat.id === 'all'} />
+    ))}
+
+    <!-- FILTER TABS -->
+    <div class="hp-tabbar sticky z-40" style="top:70px;background:var(--hp-navbg);backdrop-filter:blur(8px);border-bottom:1px solid var(--hp-border);">
+      <div class="mx-auto" style="max-width:1180px;padding:0 clamp(20px,5vw,64px);">
+        <div class="hp-tabs flex" style="gap:clamp(18px,3vw,40px);">
+          {data.categories.map((cat) => (
+            <label for={`cat-${cat.id}`} class="hp-tab">{cat.label}</label>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <section class="hp-grid-wrap" style="padding:clamp(44px,6vw,72px) clamp(20px,5vw,64px) clamp(64px,8vw,100px);">
+      <div class="mx-auto grid gap-6" style="max-width:1180px;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));">
+        {data.products.map((p) => <ProductCard product={p} variant="catalogue" />)}
+      </div>
+    </section>
+  </div>
+
+  <!-- CUSTOM ORDERS BANNER -->
+  <section class="relative overflow-hidden" style="background:var(--hp-copper);">
+    <div class="absolute inset-0" style="background:radial-gradient(60% 120% at 80% 0%,rgba(255,255,255,.16),transparent 60%);"></div>
+    <div class="relative mx-auto flex flex-wrap gap-7 items-center justify-between" style="max-width:1180px;padding:clamp(50px,6vw,80px) clamp(20px,5vw,64px);">
+      <div>
+        <h2 class="m-0 font-display font-bold text-onaccent max-w-[22ch]" style="font-size:clamp(26px,3.4vw,40px);line-height:1.12;">Need a specific size or configuration?</h2>
+        <p class="text-onaccent opacity-85 text-base mt-3">We take bulk and custom orders — tell us what your catalogue needs.</p>
+      </div>
+      <a href="/contact.html" class="inline-flex items-center gap-[10px] text-white no-underline font-semibold text-base px-8 py-4 rounded-full" style="background:#1A2340;box-shadow:0 14px 30px -12px rgba(0,0,0,.5);">Request a Quote <span style="font-family:var(--font-mono)">&rarr;</span></a>
+    </div>
+  </section>
+</Base>

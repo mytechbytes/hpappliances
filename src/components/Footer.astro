@@ -1,0 +1,46 @@
+---
+import site from '../data/site.json';
+import ThemeSelect from './ThemeSelect.astro';
+const c = site.contact;
+const madeText = site.footer.madeInIndia.text.replace('<strong>', '<strong style="color:#B87333;">');
+---
+
+<footer class="relative overflow-hidden" style="background:#161E38;padding:clamp(50px,7vw,80px) clamp(20px,5vw,64px) 0;">
+  <div class="absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 font-display font-black text-white opacity-[.04] leading-none pointer-events-none select-none" style="font-size:min(40vw,520px);">HP</div>
+
+  <div class="relative max-w-[1180px] mx-auto mb-11 flex flex-wrap items-center gap-[22px] bg-white rounded-[18px] px-[26px] py-[22px]">
+    <div class="flex-none flex items-center justify-center"><img src={site.footer.madeInIndia.badge} alt="Make in India" class="h-[62px] w-auto block" /></div>
+    <div class="flex-1 min-w-[240px]">
+      <div class="font-mono text-[11px] tracking-[2px] mb-[6px]" style="color:#B87333;">PROUDLY MADE IN INDIA</div>
+      <p class="m-0 font-display font-semibold leading-[1.4]" style="font-size:clamp(16px,1.6vw,19px);color:#1A2340;" set:html={madeText}></p>
+    </div>
+  </div>
+
+  <div class="relative max-w-[1180px] mx-auto grid gap-12 pb-[46px]" style="grid-template-columns:1.4fr 1fr 1.2fr;">
+    <div>
+      <div class="flex items-center gap-[13px] mb-[18px]"><img src={site.brand.logoWhite} alt="" class="w-11 h-11" /><span class="font-display font-bold text-xl text-white">{site.brand.name}</span></div>
+      <p class="font-display italic text-white/70 text-base leading-[1.5] max-w-[30ch] mb-[14px]">{site.brand.tagline}</p>
+      <span class="font-mono text-[11px] tracking-[2px]" style="color:#D79A5B;">{site.brand.established} · MADE IN INDIA</span>
+    </div>
+    <div>
+      <div class="font-mono text-[11px] tracking-[2px] mb-[18px]" style="color:#D79A5B;">QUICK LINKS</div>
+      <div class="flex flex-col gap-3">
+        {site.footer.quickLinks.map((l) => <a href={l.href} class="text-white/[.78] no-underline text-sm">{l.label}</a>)}
+      </div>
+    </div>
+    <div>
+      <div class="font-mono text-[11px] tracking-[2px] mb-[18px]" style="color:#D79A5B;">CONTACT</div>
+      <div class="flex flex-col gap-3 text-white/[.78] text-sm leading-[1.5]">
+        <span>{c.address}</span><span>{c.phone}</span><span>{c.email}</span>
+        <span class="font-mono text-xs text-white/55">GST · {c.gst}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative max-w-[1180px] mx-auto border-t border-white/[.12] pt-5 pb-7 flex flex-wrap gap-x-[26px] gap-y-[10px] justify-between items-center">
+    <ThemeSelect variant="footer" />
+    <span class="font-mono text-[11.5px] text-white/50">GST · {c.gst}</span>
+    <span class="font-mono text-[11.5px] text-white/50">{site.footer.copyright}</span>
+    <span class="font-mono text-[11.5px] text-white/50">Made in India</span>
+  </div>
+</footer>

@@ -1,0 +1,53 @@
+{
+  "brand": {
+    "name": "H.P. Industries",
+    "established": "EST. 2007",
+    "tagline": "Crafted for Every Kitchen. Built to Last.",
+    "logo": "/assets/hp-monogram.svg",
+    "logoWhite": "/assets/hp-monogram-white.svg"
+  },
+  "nav": [
+    { "label": "Home",     "href": "/index.html",        "id": "home" },
+    { "label": "About",    "href": "/index.html#about",  "id": "about" },
+    { "label": "Products", "href": "/products.html",     "id": "products" },
+    { "label": "Safety",   "href": "/index.html#safety", "id": "safety" },
+    { "label": "Gallery",  "href": "/index.html#gallery","id": "gallery" },
+    { "label": "Contact",  "href": "/contact.html",      "id": "contact" }
+  ],
+  "cta": { "label": "Get a Quote", "href": "/contact.html" },
+  "contact": {
+    "company": "M/S H.P. Industries",
+    "address": "Plot No. 20, First Floor, Anand Indl. Esate, Mohan Nagar, Ghaziabad, Uttar Pradesh, India. Pin code: 201007",
+    "phone": "+91-8285482863",
+    "whatsapp": "91-8285482863",
+    "email": "hridyanandsingh58@gmail.com",
+    "gst": "09AUGPS1995L1ZR",
+    "owner": { "name": "Mr. Rahul Singh", "role": "Owner", "initials": "RS" }
+  },
+  "footer": {
+    "quickLinks": [
+      { "label": "About",            "href": "/index.html#about" },
+      { "label": "Products",         "href": "/products.html" },
+      { "label": "Safety & Quality", "href": "/index.html#safety" },
+      { "label": "Gallery",          "href": "/index.html#gallery" },
+      { "label": "Contact",          "href": "/contact.html" }
+    ],
+    "copyright": "© 2024 M/S H.P. Industries",
+    "madeInIndia": {
+      "badge": "/assets/make-in-india-lion.png",
+      "text": "H.P. Industries is a proud participant in the <strong>Make in India</strong> initiative — manufacturing premium aluminium cookware on home soil since 2007."
+    }
+  },
+  "gallery": [
+    { "img": "/images/gallery/factory-floor.png",  "caption": "HP · Factory Floor" },
+    { "img": "/images/gallery/product-lineup.png", "caption": "HP · Product Lineup" },
+    { "img": "/images/gallery/quality-check.png",  "caption": "HP · Quality Check" },
+    { "img": "/images/gallery/packaging.png",      "caption": "HP · Packaging" }
+  ],
+  "stats": [
+    { "value": 17,  "suffix": "+", "label": "YEARS OF CRAFT" },
+    { "value": 3,   "suffix": "",  "label": "PRODUCT LINES" },
+    { "value": 8,   "suffix": "",  "label": "SIZES & VARIANTS" },
+    { "value": 100, "suffix": "%", "label": "IN-HOUSE QC" }
+  ]
+}

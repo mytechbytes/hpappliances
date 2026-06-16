@@ -1,0 +1,97 @@
+{
+  "categories": [
+    { "id": "all",      "label": "All" },
+    { "id": "standard", "label": "Standard" },
+    { "id": "matka",    "label": "Matka Style" },
+    { "id": "contura",  "label": "Contura Style" }
+  ],
+  "addons": ["Induction Base", "Multiple Citri"],
+  "products": [
+    {
+      "slug": "contura",
+      "category": "contura",
+      "name": "Contura Style",
+      "tagline": "Contoured curves with a modern grip — compact and elegant.",
+      "material": "Premium Aluminium",
+      "image": "/images/products/contura.jpg",
+      "sizes": ["3 Ltrs", "5 Ltrs"],
+      "addons": ["Induction Base", "Multiple Citri"],
+      "featured": true,
+      "spin": { "prefix": "/images/products/360/contura", "frames": 24 },
+      "gallery": [
+        "/images/products/360/contura-03.png",
+        "/images/products/360/contura-05.png",
+        "/images/products/360/contura-08.png",
+        "/images/products/360/contura-10.png",
+        "/images/products/360/contura-13.png",
+        "/images/products/360/contura-15.png",
+        "/images/products/360/contura-18.png",
+        "/images/products/360/contura-20.png",
+        "/images/products/360/contura-23.png"
+      ],
+      "description": "Contoured curves with a modern stay-cool grip — compact, elegant, and engineered with HP's full TriLock™ safety system. Forged from premium aluminium for even, efficient heat."
+    },
+    {
+      "slug": "standard",
+      "category": "standard",
+      "name": "Standard Series",
+      "tagline": "The classic profile — even heat, dependable everyday cooking.",
+      "material": "Premium Aluminium",
+      "image": "/images/products/standard.jpg",
+      "sizes": ["3 Ltrs", "5 Ltrs", "7 Ltrs"],
+      "addons": ["Induction Base", "Multiple Citri"],
+      "featured": true,
+      "spin": { "prefix": "/images/products/360/standard", "frames": 24 },
+      "gallery": [
+        "/images/products/360/standard-03.png",
+        "/images/products/360/standard-05.png",
+        "/images/products/360/standard-08.png",
+        "/images/products/360/standard-10.png",
+        "/images/products/360/standard-13.png",
+        "/images/products/360/standard-15.png",
+        "/images/products/360/standard-18.png",
+        "/images/products/360/standard-20.png",
+        "/images/products/360/standard-23.png"
+      ],
+      "description": "The classic straight-wall profile — dependable everyday cooking with even heat distribution and HP's signature locking and safety system. Premium aluminium build."
+    },
+    {
+      "slug": "matka",
+      "category": "matka",
+      "name": "Matka Style",
+      "tagline": "The rounded handi silhouette — generous belly, traditional form.",
+      "material": "Premium Aluminium",
+      "image": "/images/products/matka.jpg",
+      "sizes": ["3 Ltrs", "5 Ltrs", "7 Ltrs"],
+      "addons": ["Induction Base", "Multiple Citri"],
+      "featured": true,
+      "spin": { "prefix": "/images/products/360/matka", "frames": 24 },
+      "gallery": [
+        "/images/products/360/matka-03.png",
+        "/images/products/360/matka-05.png",
+        "/images/products/360/matka-08.png",
+        "/images/products/360/matka-10.png",
+        "/images/products/360/matka-13.png",
+        "/images/products/360/matka-15.png",
+        "/images/products/360/matka-18.png",
+        "/images/products/360/matka-20.png",
+        "/images/products/360/matka-23.png"
+      ],
+      "description": "The rounded handi silhouette — a generous belly and traditional form, finished with HP's TriLock™ lid and SafeValve™ release. Premium aluminium build."
+    }
+  ],
+  "why": [
+    { "title": "Experienced Workforce",     "desc": "Skilled craftsmen who have refined the cooker over 17 years of production.", "icon": "<circle cx=\"9\" cy=\"8\" r=\"3.2\"/><path d=\"M3 20a6 6 0 0 1 12 0\"/><circle cx=\"17.5\" cy=\"9\" r=\"2.4\"/><path d=\"M16 20a5.5 5.5 0 0 1 5-5\"/>" },
+    { "title": "Robust Infrastructure",      "desc": "A well-equipped facility built for consistent, repeatable quality.", "icon": "<path d=\"M3 21V8l7-4 7 4v13\"/><path d=\"M3 21h18\"/><path d=\"M17 21V11l4 2v8\"/><path d=\"M8 12h2M8 16h2\"/>" },
+    { "title": "R&amp;D Department",          "desc": "In-house design and testing keeps the product improving year on year.", "icon": "<path d=\"M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3\"/><path d=\"M7.5 15h9\"/>" },
+    { "title": "Large Production Capacity",   "desc": "Volume output that comfortably absorbs wholesale and bulk orders.", "icon": "<rect x=\"3\" y=\"9\" width=\"8\" height=\"8\" rx=\"1\"/><rect x=\"13\" y=\"4\" width=\"8\" height=\"8\" rx=\"1\"/><rect x=\"9\" y=\"14\" width=\"8\" height=\"7\" rx=\"1\"/>" },
+    { "title": "Competitive Pricing",         "desc": "Direct-from-manufacturer rates that work for resellers and distributors.", "icon": "<path d=\"M20 12l-8.5 8.5a2 2 0 0 1-2.8 0L3 15V8a1 1 0 0 1 1-1h7l9 5Z\"/><circle cx=\"8\" cy=\"11\" r=\"1.4\"/>" },
+    { "title": "Bulk Order Capability",       "desc": "Set up to take, schedule and dispatch large orders across India.", "icon": "<path d=\"M2 7h11v9H2zM13 10h4l3 3v3h-7z\"/><circle cx=\"6\" cy=\"18\" r=\"1.8\"/><circle cx=\"17\" cy=\"18\" r=\"1.8\"/>" }
+  ],
+  "safety": [
+    { "name": "HP SafeValve™",        "desc": "Precision pressure release regulates steam through every cook cycle." },
+    { "name": "HP TriLock™ Lid",       "desc": "Triple-point locking holds the lid secure until pressure is safely released." },
+    { "name": "HP SafeSeal™ Gasket",   "desc": "Precision-fit rubber gasket maintains an even, reliable seal." },
+    { "name": "HP DuraCook™ Body",     "desc": "ISI-standard aluminium construction built to take the heat, year after year." }
+  ]
+}

@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import themes from '../data/themes.json';
+import Nav from '../components/Nav.astro';
+import Drawer from '../components/Drawer.astro';
+import Footer from '../components/Footer.astro';
+
+const { title, description = '', active = 'home', navTransparent = false } = Astro.props;
+
+// Build the [data-theme="…"] CSS from themes.json so it stays the single
+// source of truth and ships as pure CSS (theming needs no per-element JS).
+const TOKEN_VAR = {
+  accent: '--hp-copper', accentText: '--hp-accenttext', onaccent: '--hp-onaccent',
+  ink: '--hp-ink', body: '--hp-body', muted: '--hp-muted', warm: '--hp-warm',
+  bg: '--hp-bg', surface: '--hp-surface', imgbg: '--hp-imgbg', border: '--hp-border',
+  navbg: '--hp-navbg', safe: '--hp-safe', safeborder: '--hp-safeborder',
+};
+const themeCss = Object.entries(themes.tokens)
+  .map(([name, tk]) => {
+    const decls = Object.entries(TOKEN_VAR)
+      .map(([k, cssVar]) => (tk[k] ? `${cssVar}:${tk[k]}` : ''))
+      .filter(Boolean)
+      .join(';');
+    // html[data-theme] outranks :root (same specificity tie would let the
+    // imported global.css :root defaults win on source order otherwise).
+    return `html[data-theme="${name}"]{${decls}}`;
+  })
+  .join('');
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href="/assets/hp-monogram.svg" />
+    <style is:global set:html={themeCss}></style>
+    {/* Set the theme + .js flag before paint to avoid any flash. */}
+    <script is:inline>
+      (function () {
+        var t;
+        try { t = localStorage.getItem('hp-theme'); } catch (e) {}
+        document.documentElement.dataset.theme = t || 'blue-light';
+        document.documentElement.classList.add('js');
+      })();
+    </script>
+  </head>
+  <body
+    data-page={active}
+    data-nav-transparent={navTransparent ? '' : undefined}
+    class="relative overflow-x-hidden bg-bg"
+    style="min-height:100vh;"
+  >
+    <Drawer />
+    <Nav active={active} />
+    <slot />
+    <Footer />
+
+    {/* Animation + interaction only — all content above is static HTML. */}
+    <script>
+      import '../scripts/theme.js';
+      import '../scripts/reveal.js';
+      import '../scripts/nav.js';
+    </script>
+  </body>
+</html>

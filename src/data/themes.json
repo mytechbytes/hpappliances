@@ -1,0 +1,27 @@
+{
+  "default": "blue-light",
+  "options": [
+    { "value": "lime-light",   "label": "Lime · Light" },
+    { "value": "lime-dark",    "label": "Lime · Dark" },
+    { "value": "blue-light",   "label": "Electric Blue · Light" },
+    { "value": "blue-dark",    "label": "Electric Blue · Dark" },
+    { "value": "pink-light",   "label": "Hot Pink · Light" },
+    { "value": "pink-dark",    "label": "Hot Pink · Dark" },
+    { "value": "yellow-light", "label": "Neon Yellow · Light" },
+    { "value": "yellow-dark",  "label": "Neon Yellow · Dark" },
+    { "value": "orange-light", "label": "Orange · Light" },
+    { "value": "orange-dark",  "label": "Orange · Dark" }
+  ],
+  "tokens": {
+    "lime-light":   {"accent":"#4BFD00","accentText":"#2C8A00","onaccent":"#0C2200","ink":"#14181F","body":"#41485A","muted":"#888FA0","warm":"#E4F8D6","bg":"#F4FEEF","surface":"#FFFFFF","imgbg":"#F0EFF4","border":"#E5EBDD","navbg":"rgba(244,254,239,.9)","safe":"#ECF5EF","safeborder":"#CDE6D6"},
+    "lime-dark":    {"accent":"#4BFD00","accentText":"#7CFF45","onaccent":"#0C2200","ink":"#F1F8EE","body":"#C7D3BE","muted":"#8C9A82","warm":"#141C0E","bg":"#0D140A","surface":"#161E12","imgbg":"#EEF4E9","border":"#2B3A22","navbg":"rgba(13,20,10,.86)","safe":"#16241A","safeborder":"#2B3D2B"},
+    "blue-light":   {"accent":"#0096FF","accentText":"#0077CC","onaccent":"#FFFFFF","ink":"#14181F","body":"#41485A","muted":"#888FA0","warm":"#D7ECFB","bg":"#EEF7FF","surface":"#FFFFFF","imgbg":"#EFF1F6","border":"#DCE6EF","navbg":"rgba(238,247,255,.9)","safe":"#ECF5EF","safeborder":"#CDE6D6"},
+    "blue-dark":    {"accent":"#0096FF","accentText":"#4FB8FF","onaccent":"#FFFFFF","ink":"#EEF4FB","body":"#BFCBDB","muted":"#8492A4","warm":"#121B28","bg":"#0A1018","surface":"#15202E","imgbg":"#E9EEF4","border":"#233448","navbg":"rgba(10,16,24,.86)","safe":"#102320","safeborder":"#273A45"},
+    "pink-light":   {"accent":"#F317FF","accentText":"#C40ECF","onaccent":"#FFFFFF","ink":"#1A1420","body":"#4C4252","muted":"#928294","warm":"#F7D8F9","bg":"#FDEFFE","surface":"#FFFFFF","imgbg":"#F3EFF4","border":"#ECDCEF","navbg":"rgba(253,239,254,.9)","safe":"#ECF5EF","safeborder":"#CDE6D6"},
+    "pink-dark":    {"accent":"#F317FF","accentText":"#FF6BFF","onaccent":"#FFFFFF","ink":"#F8EEFA","body":"#D3C2D8","muted":"#9C82A0","warm":"#1E1322","bg":"#160A18","surface":"#241629","imgbg":"#F1EAF2","border":"#3A2A40","navbg":"rgba(22,10,24,.86)","safe":"#1E2418","safeborder":"#3A2A40"},
+    "yellow-light": {"accent":"#FFFB00","accentText":"#8F7A00","onaccent":"#1A1900","ink":"#1B1A12","body":"#4E4A36","muted":"#928E73","warm":"#FBF4C4","bg":"#FFFEEA","surface":"#FFFFFF","imgbg":"#F2F1E6","border":"#E9E6C8","navbg":"rgba(255,254,234,.9)","safe":"#ECF5EF","safeborder":"#CDE6D6"},
+    "yellow-dark":  {"accent":"#FFFB00","accentText":"#FFFB00","onaccent":"#1A1900","ink":"#F8F8EE","body":"#CFCEBE","muted":"#98978B","warm":"#1A1A0E","bg":"#14140A","surface":"#20200F","imgbg":"#F3F2E8","border":"#38381F","navbg":"rgba(20,20,10,.86)","safe":"#20241A","safeborder":"#38381F"},
+    "orange-light": {"accent":"#FFA23A","accentText":"#C2660E","onaccent":"#2A1500","ink":"#1E160E","body":"#52473C","muted":"#9A8E7C","warm":"#FBE6CE","bg":"#FFF6EC","surface":"#FFFFFF","imgbg":"#F2EEE6","border":"#ECDFCB","navbg":"rgba(255,246,236,.9)","safe":"#ECF5EF","safeborder":"#CDE6D6"},
+    "orange-dark":  {"accent":"#FFA23A","accentText":"#FFB45C","onaccent":"#2A1500","ink":"#F8F2EA","body":"#D3C7B8","muted":"#9C8E7C","warm":"#1E160E","bg":"#16110A","surface":"#261C10","imgbg":"#F4EEE6","border":"#3C2E1B","navbg":"rgba(22,17,10,.86)","safe":"#24201A","safeborder":"#3C2E1B"}
+  }
+}

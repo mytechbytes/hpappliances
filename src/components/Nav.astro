@@ -1,0 +1,38 @@
+---
+import site from '../data/site.json';
+const { active = 'home' } = Astro.props;
+---
+
+<nav
+  data-nav
+  class="fixed top-0 left-0 right-0 z-[80] flex items-center justify-between transition-[background,box-shadow,padding] duration-300"
+  style="padding:14px clamp(20px,5vw,64px);background:var(--hp-navbg);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--hp-border);"
+>
+  <a href="/index.html" class="flex items-center gap-[13px] no-underline">
+    <img src={site.brand.logo} alt="" class="w-[42px] h-[42px] block" />
+    <span class="flex flex-col leading-none">
+      <span class="font-display font-bold text-[19px] text-ink">{site.brand.name}</span>
+      <span class="font-mono text-[9.5px] tracking-[3px] text-accent-text mt-1">{site.brand.established}</span>
+    </span>
+  </a>
+
+  <div data-navlinks class="hidden min-[940px]:flex items-center gap-[22px]">
+    {site.nav.map((item) => (
+      <a
+        href={item.href}
+        class:list={['relative text-sm text-ink no-underline py-1', item.id === active ? 'font-semibold' : 'font-medium']}
+      >
+        {item.label}
+        {item.id === active && <span class="absolute left-0 right-0 -bottom-[3px] h-[2px] bg-accent"></span>}
+      </a>
+    ))}
+    <a href={site.cta.href} class="hp-btn-primary text-sm px-[22px] py-[11px]">{site.cta.label}</a>
+  </div>
+
+  {/* Burger toggles the pure-CSS drawer checkbox in Drawer.astro */}
+  <label for="hp-drawer" aria-label="Open menu" class="min-[940px]:hidden flex flex-col gap-[5px] p-2 cursor-pointer">
+    <span class="w-[26px] h-[2px] bg-ink block"></span>
+    <span class="w-[26px] h-[2px] bg-ink block"></span>
+    <span class="w-[26px] h-[2px] bg-ink block"></span>
+  </label>
+</nav>
