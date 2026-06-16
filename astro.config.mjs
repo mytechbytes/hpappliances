@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 import { createLogger } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 
+import cloudflare from '@astrojs/cloudflare';
+
 // We pin Vite 8 (via package.json overrides) while Astro 6.4.7 still declares
 // vite ^7.3.2 internally. Astro's own plugins therefore emit harmless Vite-8
 // deprecation notices (optimizeDeps.esbuildOptions → rolldownOptions,
@@ -26,9 +28,13 @@ export default defineConfig({
   // Clean .html URLs (e.g. /products/contura.html) to match a classic
   // static-site layout. Switch to the default 'directory' for /products/contura/.
   build: { format: 'file' },
+
   server: { port: 5173 },
+
   vite: {
     customLogger: logger,
     plugins: [tailwindcss()],
   },
+
+  adapter: cloudflare(),
 });
