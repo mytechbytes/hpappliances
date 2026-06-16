@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Hanken Grotesk',system-ui,sans-serif;color:var(--hp-body,#2B2F3A);background:var(--hp-bg,#FCFBF8);-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--hp-copper,#B87333);color:var(--hp-onaccent,#fff)}
+  @keyframes hpFadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important}[data-anim]{opacity:1 !important;transform:none !important}}
+  ::-webkit-scrollbar{width:11px;height:11px}::-webkit-scrollbar-thumb{background:#d8cfbd;border-radius:6px}
+</style>
+</helmet>
+
+<div data-top style="position:relative;overflow-x:hidden;background:var(--hp-bg,#FCFBF8);min-height:100vh;">
+
+<!-- NAV -->
+<nav data-nav style="position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,64px);background:var(--hp-navbg,rgba(252,251,248,.92));backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #ECE6DA;">
+  <a href="Home.dc.html" style="display:flex;align-items:center;gap:13px;text-decoration:none;">
+    <img src="assets/hp-monogram.svg" style="width:42px;height:42px;display:block;">
+    <span style="display:flex;flex-direction:column;line-height:1;">
+      <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">H.P. Industries</span>
+      <span style="font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:3px;color:var(--hp-accenttext,#B87333);margin-top:4px;">EST. 2007</span>
+    </span>
+  </a>
+  <div data-navlinks style="display:flex;align-items:center;gap:22px;">
+    <a href="Home.dc.html" style="font-size:14px;font-weight:500;text-decoration:none;color:var(--hp-ink,#1F2433);padding:4px 0;">Home</a>
+    <a href="Home.dc.html#about" style="font-size:14px;font-weight:500;text-decoration:none;color:var(--hp-ink,#1F2433);padding:4px 0;">About</a>
+    <a href="Products.dc.html" style="font-size:14px;font-weight:600;text-decoration:none;color:var(--hp-ink,#1F2433);position:relative;padding:4px 0;">Products<span style="position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--hp-copper,#B87333);"></span></a>
+    <a href="Home.dc.html#safety" style="font-size:14px;font-weight:500;text-decoration:none;color:var(--hp-ink,#1F2433);padding:4px 0;">Safety</a>
+    <a href="Contact.dc.html" style="font-size:14px;font-weight:500;text-decoration:none;color:var(--hp-ink,#1F2433);padding:4px 0;">Contact</a>
+    
+    <a href="Contact.dc.html" style="font-size:14px;font-weight:600;text-decoration:none;color:var(--hp-onaccent,#fff);background:var(--hp-copper,#B87333);padding:11px 22px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 20px -8px rgba(184,115,51,.6);">Get a Quote</a>
+  </div>
+  <button data-burger aria-label="Menu" style="display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:8px;">
+    <span style="width:26px;height:2px;background:var(--hp-ink,#1F2433);display:block;"></span><span style="width:26px;height:2px;background:var(--hp-ink,#1F2433);display:block;"></span><span style="width:26px;height:2px;background:var(--hp-ink,#1F2433);display:block;"></span>
+  </button>
+</nav>
+
+<!-- DRAWER -->
+<div data-drawer style="position:fixed;inset:0;z-index:90;background:#1A2340;display:flex;flex-direction:column;padding:26px clamp(24px,7vw,48px);transform:translateX(100%);opacity:0;pointer-events:none;transition:transform .45s cubic-bezier(.6,0,.2,1),opacity .35s ease;">
+  <div style="display:flex;align-items:center;justify-content:space-between;">
+    <span style="display:flex;align-items:center;gap:12px;"><img src="assets/hp-monogram-white.svg" style="width:40px;height:40px;"><span style="font-family:'Bricolage Grotesque',sans-serif;color:#fff;font-size:18px;font-weight:700;">H.P. Industries</span></span>
+    <button data-close aria-label="Close" style="background:none;border:0;color:#fff;font-size:34px;line-height:1;cursor:pointer;">&times;</button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px;margin-top:40px;">
+    <a href="Home.dc.html" style="color:#fff;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);">Home</a>
+    <a href="Home.dc.html#about" style="color:#fff;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);">About</a>
+    <a href="Products.dc.html" style="color:#fff;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);">Products</a>
+    <a href="Home.dc.html#safety" style="color:#fff;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);">Safety</a>
+    <a href="Contact.dc.html" style="color:#fff;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);">Contact</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;margin:20px 0 14px;">
+    <span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.55);">THEME</span>
+    <div style="position:relative;flex:1;">
+      <select data-theme-select aria-label="Color theme" style="width:100%;appearance:none;-webkit-appearance:none;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:1.5px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:12px 30px 12px 14px;cursor:pointer;"><option value="lime-light" style="color:#1A2340;">Lime · Light</option><option value="lime-dark" style="color:#1A2340;">Lime · Dark</option><option value="blue-light" style="color:#1A2340;">Electric Blue · Light</option><option value="blue-dark" style="color:#1A2340;">Electric Blue · Dark</option><option value="pink-light" style="color:#1A2340;">Hot Pink · Light</option><option value="pink-dark" style="color:#1A2340;">Hot Pink · Dark</option><option value="yellow-light" style="color:#1A2340;">Neon Yellow · Light</option><option value="yellow-dark" style="color:#1A2340;">Neon Yellow · Dark</option><option value="orange-light" style="color:#1A2340;">Orange · Light</option><option value="orange-dark" style="color:#1A2340;">Orange · Dark</option></select>
+      <span style="position:absolute;right:13px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--hp-accenttext,#B87333);font-size:10px;">&#9662;</span>
+    </div>
+  </div>
+  <a href="Contact.dc.html" style="text-align:center;color:var(--hp-onaccent,#fff);background:var(--hp-copper,#B87333);text-decoration:none;font-weight:600;padding:16px;border-radius:12px;font-size:16px;">Get a Quote</a>
+</div>
+
+<!-- DETAIL -->
+<section style="padding:104px clamp(20px,5vw,64px) clamp(50px,7vw,80px);">
+  <div style="max-width:1180px;margin:0 auto;">
+    <div data-anim style="opacity:0;animation:hpFadeUp .6s ease .05s forwards;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--hp-muted,#8A8579);margin-bottom:28px;"><a href="Home.dc.html" style="color:var(--hp-muted,#8A8579);text-decoration:none;">HOME</a> &nbsp;/&nbsp; <a href="Products.dc.html" style="color:var(--hp-muted,#8A8579);text-decoration:none;">PRODUCTS</a> &nbsp;/&nbsp; <span data-bc style="color:var(--hp-accenttext,#B87333);">CONTURA STYLE</span></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start;">
+
+      <!-- GALLERY -->
+      <div data-anim style="opacity:0;animation:hpFadeUp .7s ease .15s forwards;position:sticky;top:96px;">
+        <div style="position:relative;background:var(--hp-warm,#F4F0E8);border-radius:22px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:42px;border:1px solid var(--hp-border,#E7E2D8);">
+          <img data-main src="images/products/contura.jpg" alt="HP cooker" style="max-width:92%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;transition:opacity .3s ease;">
+          <span data-badge style="position:absolute;left:20px;top:20px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:#2D7A4F;background:var(--hp-surface,#fff);border:1px solid var(--hp-safeborder,#d6e7dc);border-radius:999px;padding:6px 13px;white-space:nowrap;">ISI-STANDARD</span>
+          <img src="assets/hp-monogram.svg" style="position:absolute;right:20px;bottom:20px;width:34px;opacity:.4;">
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:16px;margin-bottom:10px;"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--hp-muted,#8A8579);">CHOOSE STYLE</span></div>
+        <div data-stylepills style="display:flex;gap:8px;margin-bottom:16px;">
+          <button data-stylepill data-style="contura" style="flex:1;font-family:'Hanken Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;padding:10px 8px;border-radius:10px;border:1.5px solid var(--hp-copper,#B87333);background:var(--hp-copper,#B87333);color:var(--hp-onaccent,#fff);">Contura</button>
+          <button data-stylepill data-style="standard" style="flex:1;font-family:'Hanken Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;padding:10px 8px;border-radius:10px;border:1.5px solid var(--hp-border,#E7E2D8);background:var(--hp-surface,#fff);color:var(--hp-ink,#1F2433);">Standard</button>
+          <button data-stylepill data-style="matka" style="flex:1;font-family:'Hanken Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;padding:10px 8px;border-radius:10px;border:1.5px solid var(--hp-border,#E7E2D8);background:var(--hp-surface,#fff);color:var(--hp-ink,#1F2433);">Matka</button>
+        </div>
+        <div data-thumbs style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;"></div>
+      </div>
+
+      <!-- INFO -->
+      <div data-anim style="opacity:0;animation:hpFadeUp .7s ease .28s forwards;">
+        <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:3px;color:var(--hp-accenttext,#B87333);margin-bottom:14px;">HP PRESSURE COOKER</div>
+        <h1 data-title style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;color:var(--hp-ink,#1F2433);font-size:clamp(32px,4.4vw,52px);line-height:1.05;letter-spacing:-.5px;">Contura Style</h1>
+        <p data-desc style="color:var(--hp-body,#52586A);font-size:16.5px;line-height:1.7;margin:18px 0 0;max-width:48ch;">Contoured curves with a modern stay-cool grip — compact, elegant, and engineered with HP's full TriLock&trade; safety system. Forged from premium aluminium for even, efficient heat.</p>
+
+        <div style="display:flex;align-items:center;gap:8px;margin:26px 0 10px;"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--hp-muted,#8A8579);">SELECT SIZE</span></div>
+        <div data-sizes style="display:flex;gap:10px;flex-wrap:wrap;"></div>
+
+        <div style="display:flex;align-items:center;gap:8px;margin:26px 0 10px;"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--hp-muted,#8A8579);">ADD-ONS</span></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button data-addon style="display:flex;align-items:center;gap:10px;background:var(--hp-surface,#fff);border:1.5px solid var(--hp-border,#E7E2D8);border-radius:12px;padding:13px 18px;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--hp-ink,#1F2433);transition:border-color .25s ease,background .25s ease;"><span data-check style="width:18px;height:18px;border-radius:5px;border:1.5px solid #cfc7b6;display:inline-flex;align-items:center;justify-content:center;"></span>Induction Base</button>
+          <button data-addon style="display:flex;align-items:center;gap:10px;background:var(--hp-surface,#fff);border:1.5px solid var(--hp-border,#E7E2D8);border-radius:12px;padding:13px 18px;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--hp-ink,#1F2433);transition:border-color .25s ease,background .25s ease;"><span data-check style="width:18px;height:18px;border-radius:5px;border:1.5px solid #cfc7b6;display:inline-flex;align-items:center;justify-content:center;"></span>Multiple Citri</button>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;">
+          <a data-enquire href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:10px;background:var(--hp-copper,#B87333);color:var(--hp-onaccent,#fff);text-decoration:none;font-weight:600;font-size:16px;padding:16px 32px;border-radius:999px;box-shadow:0 12px 30px -10px rgba(184,115,51,.6);">Enquire Now <span style="font-family:'DM Mono',monospace;">&rarr;</span></a>
+          <a href="Products.dc.html" style="display:inline-flex;align-items:center;gap:10px;border:1.5px solid rgba(31,36,51,.22);color:var(--hp-ink,#1F2433);text-decoration:none;font-weight:600;font-size:16px;padding:16px 28px;border-radius:999px;">Back to Range</a>
+        </div>
+
+        <!-- quick safety -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:34px;">
+          <div style="display:flex;align-items:center;gap:10px;background:var(--hp-safe,#F4F8F5);border:1px solid var(--hp-safeborder,#d6e7dc);border-radius:12px;padding:13px 15px;"><span style="width:30px;height:30px;border-radius:8px;background:#2D7A4F;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--hp-ink,#1F2433);">HP TriLock&trade; Lid</span></div>
+          <div style="display:flex;align-items:center;gap:10px;background:var(--hp-safe,#F4F8F5);border:1px solid var(--hp-safeborder,#d6e7dc);border-radius:12px;padding:13px 15px;"><span style="width:30px;height:30px;border-radius:8px;background:#2D7A4F;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--hp-ink,#1F2433);">HP SafeValve&trade;</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEC SHEET -->
+<section style="background:var(--hp-warm,#F4F0E8);padding:clamp(56px,7vw,90px) clamp(20px,5vw,64px);">
+  <div style="max-width:1180px;margin:0 auto;">
+    <h2 style="margin:0 0 30px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(26px,3.2vw,38px);color:var(--hp-ink,#1F2433);">Specifications</h2>
+    <div style="background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:18px;overflow:hidden;">
+      <div data-spec style="display:grid;grid-template-columns:1fr 1fr;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 360 VIEWER -->
+<section style="background:var(--hp-bg,#FCFBF8);padding:clamp(56px,7vw,90px) clamp(20px,5vw,64px);">
+  <div style="max-width:1180px;margin:0 auto;text-align:center;">
+    <div style="font-family:'DM Mono',monospace;font-size:12px;letter-spacing:3px;color:var(--hp-accenttext,#B87333);margin-bottom:14px;">360° VIEW</div>
+    <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(26px,3.2vw,38px);color:var(--hp-ink,#1F2433);">See it from every angle</h2>
+    <p style="color:var(--hp-body,#52586A);font-size:16px;line-height:1.6;margin:14px auto 0;max-width:46ch;">Drag the <span data-360sub style="color:var(--hp-accenttext,#B87333);font-weight:600;">Contura Style</span> left or right to spin it through a full 360°.</p>
+    <div data-360stage style="position:relative;max-width:520px;margin:34px auto 0;aspect-ratio:1;background:var(--hp-imgbg,#F2EEE6);border:1px solid var(--hp-border,#E7E2D8);border-radius:24px;overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;">
+      <img data-360img src="images/products/360/contura-01.png" alt="HP cooker 360 view" draggable="false" style="width:100%;height:100%;object-fit:contain;pointer-events:none;display:block;">
+      <span style="position:absolute;top:16px;right:16px;display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:#fff;background:rgba(26,35,64,.7);border-radius:999px;padding:6px 12px;">360&deg;</span>
+      <div data-360hint style="position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:#fff;background:rgba(26,35,64,.7);border-radius:999px;padding:8px 15px;transition:opacity .4s ease;pointer-events:none;">&#8634; DRAG TO ROTATE</div>
+    </div>
+    <div style="max-width:520px;margin:16px auto 0;height:4px;border-radius:999px;background:var(--hp-border,#E7E2D8);overflow:hidden;"><div data-360bar style="height:100%;width:4%;background:var(--hp-copper,#B87333);transition:width .08s linear;"></div></div>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section style="padding:clamp(56px,7vw,90px) clamp(20px,5vw,64px);">
+  <div style="max-width:1180px;margin:0 auto;">
+    <h2 style="margin:0 0 30px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(26px,3.2vw,38px);color:var(--hp-ink,#1F2433);">You may also like</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;">
+      <a href="ProductDetail.dc.html" data-rel style="text-decoration:none;background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .35s ease,box-shadow .35s ease,transform .35s ease;">
+        <div style="position:relative;background:var(--hp-imgbg,#F2EEE6);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:22px;"><img src="images/products/standard.jpg" alt="HP Standard Series" style="max-width:88%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;"><img src="assets/hp-monogram.svg" style="position:absolute;right:14px;bottom:14px;width:26px;opacity:.32;"></div>
+        <div style="padding:18px 20px 22px;"><h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">Standard Series</h3><div style="font-family:'DM Mono',monospace;font-size:11.5px;color:var(--hp-muted,#8A8579);margin-top:6px;">3 &middot; 5 &middot; 7 Ltrs</div></div>
+      </a>
+      <a href="ProductDetail.dc.html" data-rel style="text-decoration:none;background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .35s ease,box-shadow .35s ease,transform .35s ease;">
+        <div style="position:relative;background:var(--hp-imgbg,#F2EEE6);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:22px;"><img src="images/products/matka.jpg" alt="HP Matka Style" style="max-width:88%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;"><img src="assets/hp-monogram.svg" style="position:absolute;right:14px;bottom:14px;width:26px;opacity:.32;"></div>
+        <div style="padding:18px 20px 22px;"><h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">Matka Style</h3><div style="font-family:'DM Mono',monospace;font-size:11.5px;color:var(--hp-muted,#8A8579);margin-top:6px;">3 &middot; 5 &middot; 7 Ltrs</div></div>
+      </a>
+      <a href="ProductDetail.dc.html" data-rel style="text-decoration:none;background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .35s ease,box-shadow .35s ease,transform .35s ease;">
+        <div style="position:relative;background:var(--hp-imgbg,#F2EEE6);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:22px;"><img src="images/products/contura.jpg" alt="HP Contura Style" style="max-width:88%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;"><img src="assets/hp-monogram.svg" style="position:absolute;right:14px;bottom:14px;width:26px;opacity:.32;"></div>
+        <div style="padding:18px 20px 22px;"><h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">Contura Style</h3><div style="font-family:'DM Mono',monospace;font-size:11.5px;color:var(--hp-muted,#8A8579);margin-top:6px;">3 &middot; 5 Ltrs</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#161E38;position:relative;overflow:hidden;padding:clamp(50px,7vw,80px) clamp(20px,5vw,64px) 0;">
+  <div style="position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);font-family:'Bricolage Grotesque',sans-serif;font-weight:900;font-size:min(40vw,520px);color:#fff;opacity:.04;line-height:1;pointer-events:none;">HP</div>
+  <div style="position:relative;max-width:1180px;margin:0 auto 44px;display:flex;flex-wrap:wrap;align-items:center;gap:22px;background:#FFFFFF;border-radius:18px;padding:22px 26px;">
+    <div style="flex:0 0 auto;display:flex;align-items:center;justify-content:center;"><img src="assets/make-in-india-lion.png" alt="Make in India — is a lion's step" style="height:62px;width:auto;display:block;"></div>
+    <div style="flex:1;min-width:240px;">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:#B87333;margin-bottom:6px;">PROUDLY MADE IN INDIA</div>
+      <p style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(16px,1.6vw,19px);line-height:1.4;color:#1A2340;">H.P. Industries is a proud participant in the <strong style="color:#B87333;">Make in India</strong> initiative — manufacturing premium aluminium cookware on home soil since 2007.</p>
+    </div>
+  </div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:48px;padding-bottom:46px;">
+    <div>
+      <div style="display:flex;align-items:center;gap:13px;margin-bottom:18px;"><img src="assets/hp-monogram-white.svg" style="width:44px;height:44px;"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;color:#fff;">H.P. Industries</span></div>
+      <p style="font-family:'Bricolage Grotesque',sans-serif;font-style:italic;color:rgba(255,255,255,.7);font-size:16px;line-height:1.5;max-width:30ch;margin:0 0 14px;">Crafted for Every Kitchen. Built to Last.</p>
+      <span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--hp-copper,#D79A5B);">EST. 2007 &middot; MADE IN INDIA</span>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--hp-copper,#D79A5B);margin-bottom:18px;">QUICK LINKS</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="Home.dc.html#about" style="color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;">About</a>
+        <a href="Products.dc.html" style="color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;">Products</a>
+        <a href="Home.dc.html#safety" style="color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;">Safety &amp; Quality</a>
+        <a href="Contact.dc.html" style="color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--hp-copper,#D79A5B);margin-bottom:18px;">CONTACT</div>
+      <div style="display:flex;flex-direction:column;gap:12px;color:rgba(255,255,255,.78);font-size:14px;line-height:1.5;">
+        <span>Uttar Pradesh, India</span><span>+91-8285482863</span><span>hridyanandsingh58@gmail.com</span>
+        <span style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,.55);">GST &middot; 09AUGPS1995L1ZR</span>
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;border-top:1px solid rgba(255,255,255,.12);padding:20px 0 28px;display:flex;flex-wrap:wrap;gap:10px 26px;justify-content:space-between;align-items:center;">
+    <div style="display:flex;align-items:center;gap:9px;"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.5);">THEME</span><div style="position:relative;"><select data-theme-select aria-label="Color theme" style="appearance:none;-webkit-appearance:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 26px 8px 13px;cursor:pointer;"><option value="lime-light" style="color:#1A2340;">Lime · Light</option><option value="lime-dark" style="color:#1A2340;">Lime · Dark</option><option value="blue-light" style="color:#1A2340;">Electric Blue · Light</option><option value="blue-dark" style="color:#1A2340;">Electric Blue · Dark</option><option value="pink-light" style="color:#1A2340;">Hot Pink · Light</option><option value="pink-dark" style="color:#1A2340;">Hot Pink · Dark</option><option value="yellow-light" style="color:#1A2340;">Neon Yellow · Light</option><option value="yellow-dark" style="color:#1A2340;">Neon Yellow · Dark</option><option value="orange-light" style="color:#1A2340;">Orange · Light</option><option value="orange-dark" style="color:#1A2340;">Orange · Dark</option></select><span style="position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:#fff;font-size:9px;">&#9662;</span></div></div><span style="font-family:'DM Mono',monospace;font-size:11.5px;color:rgba(255,255,255,.5);">GST &middot; 09AUGPS1995L1ZR</span>
+    <span style="font-family:'DM Mono',monospace;font-size:11.5px;color:rgba(255,255,255,.5);">© 2024 M/S H.P. Industries</span>
+    <span style="font-family:'DM Mono',monospace;font-size:11.5px;color:rgba(255,255,255,.5);">Made in India</span>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;lime-light&quot;,&quot;lime-dark&quot;,&quot;blue-light&quot;,&quot;blue-dark&quot;,&quot;pink-light&quot;,&quot;pink-dark&quot;,&quot;yellow-light&quot;,&quot;yellow-dark&quot;,&quot;orange-light&quot;,&quot;orange-dark&quot;],&quot;default&quot;:&quot;terracotta&quot;}}">
+class Component extends DCLogic {
+  themes = {
+    'lime-light': {'accent':'#4BFD00','accentText':'#2C8A00','onaccent':'#0C2200','ink':'#14181F','body':'#41485A','muted':'#888FA0','warm':'#E4F8D6','bg':'#F4FEEF','surface':'#FFFFFF','imgbg':'#F0EFF4','border':'#E5EBDD','navbg':'rgba(244,254,239,.9)','safe':'#ECF5EF','safeborder':'#CDE6D6'},
+    'lime-dark': {'accent':'#4BFD00','accentText':'#7CFF45','onaccent':'#0C2200','ink':'#F1F8EE','body':'#C7D3BE','muted':'#8C9A82','warm':'#141C0E','bg':'#0D140A','surface':'#161E12','imgbg':'#EEF4E9','border':'#2B3A22','navbg':'rgba(13,20,10,.86)','safe':'#16241A','safeborder':'#2B3D2B'},
+    'blue-light': {'accent':'#0096FF','accentText':'#0077CC','onaccent':'#FFFFFF','ink':'#14181F','body':'#41485A','muted':'#888FA0','warm':'#D7ECFB','bg':'#EEF7FF','surface':'#FFFFFF','imgbg':'#EFF1F6','border':'#DCE6EF','navbg':'rgba(238,247,255,.9)','safe':'#ECF5EF','safeborder':'#CDE6D6'},
+    'blue-dark': {'accent':'#0096FF','accentText':'#4FB8FF','onaccent':'#FFFFFF','ink':'#EEF4FB','body':'#BFCBDB','muted':'#8492A4','warm':'#121B28','bg':'#0A1018','surface':'#15202E','imgbg':'#E9EEF4','border':'#233448','navbg':'rgba(10,16,24,.86)','safe':'#102320','safeborder':'#273A45'},
+    'pink-light': {'accent':'#F317FF','accentText':'#C40ECF','onaccent':'#FFFFFF','ink':'#1A1420','body':'#4C4252','muted':'#928294','warm':'#F7D8F9','bg':'#FDEFFE','surface':'#FFFFFF','imgbg':'#F3EFF4','border':'#ECDCEF','navbg':'rgba(253,239,254,.9)','safe':'#ECF5EF','safeborder':'#CDE6D6'},
+    'pink-dark': {'accent':'#F317FF','accentText':'#FF6BFF','onaccent':'#FFFFFF','ink':'#F8EEFA','body':'#D3C2D8','muted':'#9C82A0','warm':'#1E1322','bg':'#160A18','surface':'#241629','imgbg':'#F1EAF2','border':'#3A2A40','navbg':'rgba(22,10,24,.86)','safe':'#1E2418','safeborder':'#3A2A40'},
+    'yellow-light': {'accent':'#FFFB00','accentText':'#8F7A00','onaccent':'#1A1900','ink':'#1B1A12','body':'#4E4A36','muted':'#928E73','warm':'#FBF4C4','bg':'#FFFEEA','surface':'#FFFFFF','imgbg':'#F2F1E6','border':'#E9E6C8','navbg':'rgba(255,254,234,.9)','safe':'#ECF5EF','safeborder':'#CDE6D6'},
+    'yellow-dark': {'accent':'#FFFB00','accentText':'#FFFB00','onaccent':'#1A1900','ink':'#F8F8EE','body':'#CFCEBE','muted':'#98978B','warm':'#1A1A0E','bg':'#14140A','surface':'#20200F','imgbg':'#F3F2E8','border':'#38381F','navbg':'rgba(20,20,10,.86)','safe':'#20241A','safeborder':'#38381F'},
+    'orange-light': {'accent':'#FFA23A','accentText':'#C2660E','onaccent':'#2A1500','ink':'#1E160E','body':'#52473C','muted':'#9A8E7C','warm':'#FBE6CE','bg':'#FFF6EC','surface':'#FFFFFF','imgbg':'#F2EEE6','border':'#ECDFCB','navbg':'rgba(255,246,236,.9)','safe':'#ECF5EF','safeborder':'#CDE6D6'},
+    'orange-dark': {'accent':'#FFA23A','accentText':'#FFB45C','onaccent':'#2A1500','ink':'#F8F2EA','body':'#D3C7B8','muted':'#9C8E7C','warm':'#1E160E','bg':'#16110A','surface':'#261C10','imgbg':'#F4EEE6','border':'#3C2E1B','navbg':'rgba(22,17,10,.86)','safe':'#24201A','safeborder':'#3C2E1B'}
+  };
+  data = {
+    contura:  { name: 'Contura Style', img: 'images/products/contura.jpg', sizes: ['3 Ltrs', '5 Ltrs'], desc: "Contoured curves with a modern stay-cool grip — compact, elegant, and engineered with HP's full TriLock\u2122 safety system. Forged from premium aluminium for even, efficient heat." },
+    standard: { name: 'Standard Series', img: 'images/products/standard.jpg', sizes: ['3 Ltrs', '5 Ltrs', '7 Ltrs'], desc: "The classic straight-wall profile — dependable everyday cooking with even heat distribution and HP's signature locking and safety system. Premium aluminium build." },
+    matka:    { name: 'Matka Style', img: 'images/products/matka.jpg', sizes: ['3 Ltrs', '5 Ltrs', '7 Ltrs'], desc: "The rounded handi silhouette — a generous belly and traditional form, finished with HP's TriLock\u2122 lid and SafeValve\u2122 release. Premium aluminium build." }
+  };
+  state = { style: 'contura', size: 0, addons: { 0: false, 1: false } };
+
+  componentDidMount() {
+    this.rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.applyTheme();
+    this.bind();
+    this.render2();
+    this.setup360();
+  }
+  componentDidUpdate() { this.applyTheme(); }
+
+  currentTheme() {
+    let t = null;
+    try { t = localStorage.getItem('hp-theme'); } catch (e) {}
+    if (!t || !this.themes[t]) t = this.props.theme || 'orange-light';
+    return t;
+  }
+  applyTheme() {
+    const th = this.themes[this.currentTheme()] || this.themes['orange-light'];
+    const r = document.documentElement.style;
+    const set = (k, v) => { if (v) r.setProperty(k, v); };
+    set('--hp-copper', th.accent); set('--hp-ink', th.ink); set('--hp-warm', th.warm);
+    set('--hp-bg', th.bg); set('--hp-surface', th.surface); set('--hp-imgbg', th.imgbg);
+    set('--hp-body', th.body); set('--hp-muted', th.muted); set('--hp-border', th.border);
+    set('--hp-navbg', th.navbg); set('--hp-safe', th.safe); set('--hp-safeborder', th.safeborder); set('--hp-accenttext', th.accentText); set('--hp-onaccent', th.onaccent);
+    document.querySelectorAll('[data-theme-select]').forEach(s => { if (s.value !== this.currentTheme()) s.value = this.currentTheme(); });
+  }
+  setTheme(name) {
+    if (!this.themes[name]) return;
+    try { localStorage.setItem('hp-theme', name); } catch (e) {}
+    this.applyTheme();
+  }
+
+  bind() {
+    document.querySelectorAll('[data-theme-select]').forEach(s => { s.value = this.currentTheme(); s.addEventListener('change', () => this.setTheme(s.value)); });
+
+    const burger = document.querySelector('[data-burger]');
+    const drawer = document.querySelector('[data-drawer]');
+    const setDrawer = (open) => { if (!drawer) return; drawer.setAttribute('data-open', open ? '1' : '0'); drawer.style.transform = open ? 'translateX(0)' : 'translateX(100%)'; drawer.style.opacity = open ? '1' : '0'; drawer.style.pointerEvents = open ? 'auto' : 'none'; };
+    if (burger) burger.addEventListener('click', () => setDrawer(drawer.getAttribute('data-open') !== '1'));
+    if (drawer) { const c = drawer.querySelector('[data-close]'); if (c) c.addEventListener('click', () => setDrawer(false)); drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setDrawer(false))); }
+
+    const links = document.querySelector('[data-navlinks]');
+    const responsive = () => { const narrow = window.innerWidth < 940; if (links) links.style.display = narrow ? 'none' : 'flex'; if (burger) burger.style.display = narrow ? 'flex' : 'none'; };
+    window.addEventListener('resize', responsive, { passive: true });
+    responsive();
+
+    document.querySelectorAll('[data-stylepill]').forEach(p => p.addEventListener('click', () => { this.setState({ style: p.getAttribute('data-style'), size: 0 }); this.galSel = 0; this.render2(); this.update360(); }));
+    document.querySelectorAll('[data-addon]').forEach((b, i) => b.addEventListener('click', () => { const a = Object.assign({}, this.state.addons); a[i] = !a[i]; this.setState({ addons: a }); this.render2(); }));
+
+    document.querySelectorAll('[data-rel]').forEach(card => {
+      card.addEventListener('mouseenter', () => { card.style.borderColor = 'var(--hp-copper,#B87333)'; card.style.boxShadow = '0 18px 38px -22px rgba(184,115,51,.5)'; card.style.transform = 'translateY(-4px)'; });
+      card.addEventListener('mouseleave', () => { card.style.borderColor = 'var(--hp-border,#E7E2D8)'; card.style.boxShadow = 'none'; card.style.transform = 'none'; });
+    });
+  }
+
+  render2() {
+    const d = this.data[this.state.style];
+    if (!d) return;
+    this.buildGallery();
+    const title = document.querySelector('[data-title]'); if (title) title.textContent = d.name;
+    const desc = document.querySelector('[data-desc]'); if (desc) desc.textContent = d.desc;
+    const bc = document.querySelector('[data-bc]'); if (bc) bc.textContent = d.name.toUpperCase();
+
+    document.querySelectorAll('[data-stylepill]').forEach(p => {
+      const on = p.getAttribute('data-style') === this.state.style;
+      p.style.background = on ? 'var(--hp-copper,#B87333)' : 'var(--hp-surface,#fff)';
+      p.style.color = on ? 'var(--hp-onaccent,#fff)' : 'var(--hp-ink,#1F2433)';
+      p.style.borderColor = on ? 'var(--hp-copper,#B87333)' : 'var(--hp-border,#E7E2D8)';
+    });
+
+    // sizes
+    const sizesWrap = document.querySelector('[data-sizes]');
+    if (sizesWrap) {
+      sizesWrap.innerHTML = '';
+      d.sizes.forEach((sz, i) => {
+        const b = document.createElement('button');
+        const on = i === this.state.size;
+        b.textContent = sz;
+        b.style.cssText = 'font-family:\'DM Mono\',monospace;font-size:13px;cursor:pointer;padding:11px 18px;border-radius:10px;transition:all .2s ease;border:1.5px solid ' + (on ? 'var(--hp-copper,#B87333)' : 'var(--hp-border,#E7E2D8)') + ';background:' + (on ? 'var(--hp-copper,#B87333)' : '#fff') + ';color:' + (on ? '#fff' : 'var(--hp-ink,#1F2433)') + ';';
+        b.addEventListener('click', () => { this.setState({ size: i }); this.render2(); });
+        sizesWrap.appendChild(b);
+      });
+    }
+
+    // addons
+    document.querySelectorAll('[data-addon]').forEach((b, i) => {
+      const on = this.state.addons[i];
+      b.style.borderColor = on ? 'var(--hp-copper,#B87333)' : 'var(--hp-border,#E7E2D8)';
+      b.style.background = on ? 'rgba(184,115,51,.06)' : '#fff';
+      const chk = b.querySelector('[data-check]');
+      if (chk) { chk.style.background = on ? 'var(--hp-copper,#B87333)' : 'transparent'; chk.style.borderColor = on ? 'var(--hp-copper,#B87333)' : '#cfc7b6'; chk.innerHTML = on ? '<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="var(--hp-onaccent,#fff)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>' : ''; }
+    });
+
+    // spec sheet
+    const spec = document.querySelector('[data-spec]');
+    if (spec) {
+      const addonStr = [this.state.addons[0] ? 'Induction Base' : null, this.state.addons[1] ? 'Multiple Citri' : null].filter(Boolean).join(', ') || 'None selected';
+      const rows = [
+        ['Product', d.name], ['Material', 'Premium Aluminium'],
+        ['Selected Size', d.sizes[this.state.size]], ['Available Sizes', d.sizes.join(' · ')],
+        ['Lid System', 'HP TriLock\u2122 (triple-point)'], ['Pressure Release', 'HP SafeValve\u2122'],
+        ['Gasket', 'HP SafeSeal\u2122 rubber'], ['Compliance', 'ISI-standard'],
+        ['Add-ons', addonStr], ['Min. Order', 'Retail & Bulk']
+      ];
+      spec.innerHTML = rows.map((r, i) => '<div style="display:flex;justify-content:space-between;gap:14px;padding:16px 22px;border-bottom:1px solid var(--hp-border,#EFEAE0);' + (i % 2 ? 'border-left:1px solid var(--hp-border,#EFEAE0);' : '') + '"><span style="font-family:\'DM Mono\',monospace;font-size:12px;letter-spacing:.5px;color:var(--hp-muted,#8A8579);">' + r[0] + '</span><span style="font-size:13.5px;font-weight:500;color:var(--hp-ink,#1F2433);text-align:right;">' + r[1] + '</span></div>').join('');
+    }
+  }
+
+  galleryImages(style) {
+    const picks = [3, 5, 8, 10, 13, 15, 18, 20, 23];
+    const a = ['images/products/' + style + '.jpg'];
+    picks.forEach(i => a.push('images/products/360/' + style + '-' + String(i).padStart(2, '0') + '.png'));
+    return a;
+  }
+  buildGallery() {
+    const wrap = document.querySelector('[data-thumbs]');
+    const main = document.querySelector('[data-main]');
+    if (!wrap || !main) return;
+    const imgs = this.galleryImages(this.state.style);
+    if (this.galSel == null || this.galSel >= imgs.length) this.galSel = 0;
+    // main
+    const sel = imgs[this.galSel];
+    if (main.getAttribute('src') !== sel) {
+      main.style.opacity = '0';
+      const reveal = () => { main.style.opacity = '1'; main.removeEventListener('load', reveal); };
+      main.addEventListener('load', reveal);
+      main.src = sel;
+      requestAnimationFrame(() => requestAnimationFrame(() => { main.style.opacity = '1'; }));
+    }
+    // thumbs
+    wrap.innerHTML = '';
+    imgs.forEach((src, i) => {
+      const b = document.createElement('button');
+      const on = i === this.galSel;
+      b.style.cssText = 'background:var(--hp-warm,#F4F0E8);border:2px solid ' + (on ? 'var(--hp-copper,#B87333)' : 'var(--hp-border,#E7E2D8)') + ';border-radius:11px;aspect-ratio:1;cursor:pointer;padding:7px;display:flex;align-items:center;justify-content:center;overflow:hidden;';
+      const im = document.createElement('img');
+      im.src = src; im.alt = this.data[this.state.style].name + ' view ' + (i + 1);
+      im.style.cssText = 'max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;';
+      b.appendChild(im);
+      b.addEventListener('click', () => { this.galSel = i; this.buildGallery(); });
+      wrap.appendChild(b);
+    });
+  }
+
+  frames(style) { const a = []; for (let i = 1; i <= 24; i++) a.push('images/products/360/' + style + '-' + String(i).padStart(2, '0') + '.png'); return a; }
+
+  setup360() {
+    const stage = document.querySelector('[data-360stage]');
+    const img = document.querySelector('[data-360img]');
+    const bar = document.querySelector('[data-360bar]');
+    const hint = document.querySelector('[data-360hint]');
+    if (!stage || !img) return;
+    this.f360 = 0;
+    const frames = () => this.frames(this.state.style);
+    const n = () => frames().length;
+    const show = (i) => { const t = n(); const idx = ((i % t) + t) % t; this.f360 = idx; img.src = frames()[idx]; if (bar) bar.style.width = (((idx + 1) / t) * 100).toFixed(1) + '%'; };
+    this._show360 = show;
+    let dragging = false, startX = 0, startIdx = 0;
+    const ppf = () => Math.max(5, stage.clientWidth / n());
+    const down = (e) => { dragging = true; startX = (e.touches ? e.touches[0].clientX : e.clientX); startIdx = this.f360; stage.style.cursor = 'grabbing'; this._used360 = true; this.stopAuto(); if (hint) hint.style.opacity = '0'; };
+    const move = (e) => { if (!dragging) return; const cxp = (e.touches ? e.touches[0].clientX : e.clientX); const dx = cxp - startX; show(startIdx - Math.round(dx / ppf())); if (e.cancelable && e.touches && Math.abs(dx) > 4) e.preventDefault(); };
+    const up = () => { dragging = false; stage.style.cursor = 'grab'; };
+    stage.addEventListener('mousedown', down); window.addEventListener('mousemove', move); window.addEventListener('mouseup', up);
+    stage.addEventListener('touchstart', down, { passive: true }); stage.addEventListener('touchmove', move, { passive: false }); window.addEventListener('touchend', up);
+    this.update360();
+  }
+  update360() {
+    const sub = document.querySelector('[data-360sub]'); if (sub) sub.textContent = this.data[this.state.style].name;
+    this.frames(this.state.style).forEach(s => { const im = new Image(); im.src = s; });
+    this.f360 = 0; if (this._show360) this._show360(0);
+    if (!this._used360) this.startAuto();
+  }
+  startAuto() { if (this.rm || this._used360) return; this.stopAuto(); this._auto = setInterval(() => { if (this._show360) this._show360(this.f360 + 1); }, 120); }
+  stopAuto() { if (this._auto) { clearInterval(this._auto); this._auto = null; } }
+
+  renderVals() {
+    const related = [
+      { name: 'Standard Series', img: 'images/products/standard.jpg', sizes: '3 · 5 · 7 Ltrs' },
+      { name: 'Matka Style', img: 'images/products/matka.jpg', sizes: '3 · 5 · 7 Ltrs' },
+      { name: 'Contura Style', img: 'images/products/contura.jpg', sizes: '3 · 5 Ltrs' }
+    ];
+    return { related };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Hanken Grotesk',system-ui,sans-serif;color:var(--hp-body,#2B2F3A);background:var(--hp-bg,#FCFBF8);-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--hp-copper,#B87333);color:var(--hp-onaccent,#fff)}
+  @keyframes hpFadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important}[data-anim]{opacity:1 !important;transform:none !important}}
+  ::-webkit-scrollbar{width:11px;height:11px}::-webkit-scrollbar-thumb{background:#d8cfbd;border-radius:6px}
+</style>
+</helmet>
+
+<div data-top style="position:relative;overflow-x:hidden;background:var(--hp-bg,#FCFBF8);min-height:100vh;">
+
+<!-- NAV -->
+<nav data-nav style="position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,5vw,64px);transition:background .4s ease,box-shadow .4s ease,padding .4s ease;background:var(--hp-navbg,rgba(252,251,248,.92));backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #ECE6DA;">
+  <a href="Home.dc.html" style="display:flex;align-items:center;gap:13px;text-decoration:none;">
+    <img src="assets/hp-monogram.svg" style="width:42px;height:42px;display:block;">
+    <span style="display:flex;flex-direction:column;line-height:1;">
+      <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">H.P. Industries</span>
+      <span style="font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:3px;color:var(--hp-accenttext,#B87333);margin-top:4px;">EST. 2007</span>
+    </span>
+  </a>
+  <div data-navlinks style="display:flex;align-items:center;gap:22px;">
+    <a href="Home.dc.html" style="font-size:14px;font-weight:500;text-decoration:none;color:var(--hp-ink,#1F2433);padding:4px 0;">Home</a>
+    <a href="Home.dc.html#about" style="font-size:14px;font-weight:500;text-decoration:none;color:var(--hp-ink,#1F2433);padding:4px 0;">About</a>
+    <a href="Products.dc.html" style="font-size:14px;font-weight:600;text-decoration:none;color:var(--hp-ink,#1F2433);position:relative;padding:4px 0;">Products<span style="position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--hp-copper,#B87333);"></span></a>
+    <a href="Home.dc.html#safety" style="font-size:14px;font-weight:500;text-decoration:none;color:var(--hp-ink,#1F2433);padding:4px 0;">Safety</a>
+    <a href="Home.dc.html#gallery" style="font-size:14px;font-weight:500;text-decoration:none;color:var(--hp-ink,#1F2433);padding:4px 0;">Gallery</a>
+    <a href="Contact.dc.html" style="font-size:14px;font-weight:500;text-decoration:none;color:var(--hp-ink,#1F2433);padding:4px 0;">Contact</a>
+    
+    <a href="Contact.dc.html" style="font-size:14px;font-weight:600;text-decoration:none;color:var(--hp-onaccent,#fff);background:var(--hp-copper,#B87333);padding:11px 22px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 20px -8px rgba(184,115,51,.6);">Get a Quote</a>
+  </div>
+  <button data-burger aria-label="Menu" style="display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:8px;">
+    <span style="width:26px;height:2px;background:var(--hp-ink,#1F2433);display:block;"></span><span style="width:26px;height:2px;background:var(--hp-ink,#1F2433);display:block;"></span><span style="width:26px;height:2px;background:var(--hp-ink,#1F2433);display:block;"></span>
+  </button>
+</nav>
+
+<!-- DRAWER -->
+<div data-drawer style="position:fixed;inset:0;z-index:90;background:#1A2340;display:flex;flex-direction:column;padding:26px clamp(24px,7vw,48px);transform:translateX(100%);opacity:0;pointer-events:none;transition:transform .45s cubic-bezier(.6,0,.2,1),opacity .35s ease;">
+  <div style="display:flex;align-items:center;justify-content:space-between;">
+    <span style="display:flex;align-items:center;gap:12px;"><img src="assets/hp-monogram-white.svg" style="width:40px;height:40px;"><span style="font-family:'Bricolage Grotesque',sans-serif;color:#fff;font-size:18px;font-weight:700;">H.P. Industries</span></span>
+    <button data-close aria-label="Close" style="background:none;border:0;color:#fff;font-size:34px;line-height:1;cursor:pointer;">&times;</button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px;margin-top:40px;">
+    <a href="Home.dc.html" style="color:#fff;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);">Home</a>
+    <a href="Home.dc.html#about" style="color:#fff;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);">About</a>
+    <a href="Products.dc.html" style="color:#fff;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);">Products</a>
+    <a href="Home.dc.html#safety" style="color:#fff;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);">Safety</a>
+    <a href="Contact.dc.html" style="color:#fff;text-decoration:none;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.1);">Contact</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;margin:20px 0 14px;">
+    <span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.55);">THEME</span>
+    <div style="position:relative;flex:1;">
+      <select data-theme-select aria-label="Color theme" style="width:100%;appearance:none;-webkit-appearance:none;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:1.5px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:12px 30px 12px 14px;cursor:pointer;"><option value="lime-light" style="color:#1A2340;">Lime · Light</option><option value="lime-dark" style="color:#1A2340;">Lime · Dark</option><option value="blue-light" style="color:#1A2340;">Electric Blue · Light</option><option value="blue-dark" style="color:#1A2340;">Electric Blue · Dark</option><option value="pink-light" style="color:#1A2340;">Hot Pink · Light</option><option value="pink-dark" style="color:#1A2340;">Hot Pink · Dark</option><option value="yellow-light" style="color:#1A2340;">Neon Yellow · Light</option><option value="yellow-dark" style="color:#1A2340;">Neon Yellow · Dark</option><option value="orange-light" style="color:#1A2340;">Orange · Light</option><option value="orange-dark" style="color:#1A2340;">Orange · Dark</option></select>
+      <span style="position:absolute;right:13px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--hp-accenttext,#B87333);font-size:10px;">&#9662;</span>
+    </div>
+  </div>
+  <a href="Contact.dc.html" style="text-align:center;color:var(--hp-onaccent,#fff);background:var(--hp-copper,#B87333);text-decoration:none;font-weight:600;padding:16px;border-radius:12px;font-size:16px;">Get a Quote</a>
+</div>
+
+<!-- PAGE HERO -->
+<header style="position:relative;padding:130px clamp(20px,5vw,64px) 54px;background:linear-gradient(160deg,var(--hp-bg,#FDFCF9) 0%,var(--hp-warm,#F6F1E8) 100%);overflow:hidden;">
+  <div style="position:absolute;top:-20%;right:-6%;width:50vw;height:50vw;max-width:620px;max-height:620px;background:radial-gradient(circle,rgba(184,115,51,.14),transparent 62%);pointer-events:none;"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;">
+    <div data-anim style="opacity:0;animation:hpFadeUp .7s ease .1s forwards;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;color:var(--hp-muted,#8A8579);margin-bottom:16px;"><a href="Home.dc.html" style="color:var(--hp-muted,#8A8579);text-decoration:none;">HOME</a> &nbsp;/&nbsp; <span style="color:var(--hp-accenttext,#B87333);">PRODUCTS</span></div>
+    <h1 data-anim style="opacity:0;animation:hpFadeUp .8s ease .22s forwards;margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;color:var(--hp-ink,#1F2433);font-size:clamp(38px,5.4vw,68px);line-height:1.04;letter-spacing:-1px;">Our Product Range</h1>
+    <p data-anim style="opacity:0;animation:hpFadeUp .8s ease .34s forwards;color:var(--hp-body,#52586A);font-size:clamp(16px,1.4vw,18.5px);line-height:1.7;max-width:54ch;margin:22px 0 0;">Premium aluminium pressure cookers in three styles and eight sizes — every unit finished with HP's signature safety system. Browse the range, then enquire for retail or bulk pricing.</p>
+  </div>
+</header>
+
+<!-- FILTER TABS -->
+<div style="position:sticky;top:70px;z-index:40;background:var(--hp-navbg,rgba(252,251,248,.94));backdrop-filter:blur(8px);border-bottom:1px solid #ECE6DA;">
+  <div style="max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,64px);">
+    <div data-tabs style="position:relative;display:flex;gap:clamp(18px,3vw,40px);">
+      <button data-tab data-cat="all" style="background:none;border:0;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:600;color:var(--hp-ink,#1F2433);padding:20px 2px;">All</button>
+      <button data-tab data-cat="standard" style="background:none;border:0;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:500;color:var(--hp-muted,#8A8579);padding:20px 2px;">Standard</button>
+      <button data-tab data-cat="matka" style="background:none;border:0;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:500;color:var(--hp-muted,#8A8579);padding:20px 2px;">Matka Style</button>
+      <button data-tab data-cat="contura" style="background:none;border:0;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:500;color:var(--hp-muted,#8A8579);padding:20px 2px;">Contura Style</button>
+      <span data-underline style="position:absolute;bottom:0;left:0;height:2.5px;width:0;background:var(--hp-copper,#B87333);transition:left .35s cubic-bezier(.2,.7,.3,1),width .35s cubic-bezier(.2,.7,.3,1);"></span>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT GRID -->
+<section style="padding:clamp(44px,6vw,72px) clamp(20px,5vw,64px) clamp(64px,8vw,100px);">
+  <div data-grid style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:24px;">
+
+    <!-- generated cards -->
+    <article data-card data-cat="standard" style="opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1),border-color .35s ease,box-shadow .35s ease;background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="position:relative;background:var(--hp-imgbg,#F2EEE6);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:20px;">
+        <img src="images/products/standard.jpg" alt="HP Standard Series 3 Ltrs" style="max-width:90%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;">
+        <span style="position:absolute;left:14px;top:14px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--hp-accenttext,#B87333);background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:999px;padding:4px 11px;white-space:nowrap;">3 Ltrs</span>
+        <img data-wm src="assets/hp-monogram.svg" style="position:absolute;right:14px;bottom:14px;width:26px;opacity:.32;transition:opacity .35s ease;">
+      </div>
+      <div style="padding:20px 20px 22px;display:flex;flex-direction:column;flex:1;">
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">Standard Series</h3>
+        <div style="font-family:'DM Mono',monospace;font-size:11.5px;color:var(--hp-muted,#8A8579);margin-top:6px;">Aluminium &middot; 3 Ltrs</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 18px;">
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Induction Base</span>
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Multiple Citri</span>
+        </div>
+        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+          <a href="ProductDetail.dc.html" style="display:inline-flex;align-items:center;gap:6px;color:var(--hp-ink,#1F2433);text-decoration:none;font-weight:600;font-size:13.5px;">Details <span style="font-family:'DM Mono',monospace;">&rarr;</span></a>
+          <a href="Contact.dc.html" style="text-decoration:none;color:var(--hp-onaccent,#fff);background:var(--hp-copper,#B87333);font-weight:600;font-size:13px;padding:9px 16px;border-radius:999px;">Enquire</a>
+        </div>
+      </div>
+    </article>
+    <article data-card data-cat="standard" style="opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1),border-color .35s ease,box-shadow .35s ease;background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="position:relative;background:var(--hp-imgbg,#F2EEE6);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:20px;">
+        <img src="images/products/standard.jpg" alt="HP Standard Series 5 Ltrs" style="max-width:90%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;">
+        <span style="position:absolute;left:14px;top:14px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--hp-accenttext,#B87333);background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:999px;padding:4px 11px;white-space:nowrap;">5 Ltrs</span>
+        <img data-wm src="assets/hp-monogram.svg" style="position:absolute;right:14px;bottom:14px;width:26px;opacity:.32;transition:opacity .35s ease;">
+      </div>
+      <div style="padding:20px 20px 22px;display:flex;flex-direction:column;flex:1;">
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">Standard Series</h3>
+        <div style="font-family:'DM Mono',monospace;font-size:11.5px;color:var(--hp-muted,#8A8579);margin-top:6px;">Aluminium &middot; 5 Ltrs</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 18px;">
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Induction Base</span>
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Multiple Citri</span>
+        </div>
+        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+          <a href="ProductDetail.dc.html" style="display:inline-flex;align-items:center;gap:6px;color:var(--hp-ink,#1F2433);text-decoration:none;font-weight:600;font-size:13.5px;">Details <span style="font-family:'DM Mono',monospace;">&rarr;</span></a>
+          <a href="Contact.dc.html" style="text-decoration:none;color:var(--hp-onaccent,#fff);background:var(--hp-copper,#B87333);font-weight:600;font-size:13px;padding:9px 16px;border-radius:999px;">Enquire</a>
+        </div>
+      </div>
+    </article>
+    <article data-card data-cat="standard" style="opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1),border-color .35s ease,box-shadow .35s ease;background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="position:relative;background:var(--hp-imgbg,#F2EEE6);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:20px;">
+        <img src="images/products/standard.jpg" alt="HP Standard Series 7 Ltrs" style="max-width:90%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;">
+        <span style="position:absolute;left:14px;top:14px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--hp-accenttext,#B87333);background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:999px;padding:4px 11px;white-space:nowrap;">7 Ltrs</span>
+        <img data-wm src="assets/hp-monogram.svg" style="position:absolute;right:14px;bottom:14px;width:26px;opacity:.32;transition:opacity .35s ease;">
+      </div>
+      <div style="padding:20px 20px 22px;display:flex;flex-direction:column;flex:1;">
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">Standard Series</h3>
+        <div style="font-family:'DM Mono',monospace;font-size:11.5px;color:var(--hp-muted,#8A8579);margin-top:6px;">Aluminium &middot; 7 Ltrs</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 18px;">
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Induction Base</span>
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Multiple Citri</span>
+        </div>
+        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+          <a href="ProductDetail.dc.html" style="display:inline-flex;align-items:center;gap:6px;color:var(--hp-ink,#1F2433);text-decoration:none;font-weight:600;font-size:13.5px;">Details <span style="font-family:'DM Mono',monospace;">&rarr;</span></a>
+          <a href="Contact.dc.html" style="text-decoration:none;color:var(--hp-onaccent,#fff);background:var(--hp-copper,#B87333);font-weight:600;font-size:13px;padding:9px 16px;border-radius:999px;">Enquire</a>
+        </div>
+      </div>
+    </article>
+    <article data-card data-cat="matka" style="opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1),border-color .35s ease,box-shadow .35s ease;background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="position:relative;background:var(--hp-imgbg,#F2EEE6);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:20px;">
+        <img src="images/products/matka.jpg" alt="HP Matka Style 3 Ltrs" style="max-width:90%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;">
+        <span style="position:absolute;left:14px;top:14px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--hp-accenttext,#B87333);background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:999px;padding:4px 11px;white-space:nowrap;">3 Ltrs</span>
+        <img data-wm src="assets/hp-monogram.svg" style="position:absolute;right:14px;bottom:14px;width:26px;opacity:.32;transition:opacity .35s ease;">
+      </div>
+      <div style="padding:20px 20px 22px;display:flex;flex-direction:column;flex:1;">
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">Matka Style</h3>
+        <div style="font-family:'DM Mono',monospace;font-size:11.5px;color:var(--hp-muted,#8A8579);margin-top:6px;">Aluminium &middot; 3 Ltrs</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 18px;">
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Induction Base</span>
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Multiple Citri</span>
+        </div>
+        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+          <a href="ProductDetail.dc.html" style="display:inline-flex;align-items:center;gap:6px;color:var(--hp-ink,#1F2433);text-decoration:none;font-weight:600;font-size:13.5px;">Details <span style="font-family:'DM Mono',monospace;">&rarr;</span></a>
+          <a href="Contact.dc.html" style="text-decoration:none;color:var(--hp-onaccent,#fff);background:var(--hp-copper,#B87333);font-weight:600;font-size:13px;padding:9px 16px;border-radius:999px;">Enquire</a>
+        </div>
+      </div>
+    </article>
+    <article data-card data-cat="matka" style="opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1),border-color .35s ease,box-shadow .35s ease;background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="position:relative;background:var(--hp-imgbg,#F2EEE6);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:20px;">
+        <img src="images/products/matka.jpg" alt="HP Matka Style 5 Ltrs" style="max-width:90%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;">
+        <span style="position:absolute;left:14px;top:14px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--hp-accenttext,#B87333);background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:999px;padding:4px 11px;white-space:nowrap;">5 Ltrs</span>
+        <img data-wm src="assets/hp-monogram.svg" style="position:absolute;right:14px;bottom:14px;width:26px;opacity:.32;transition:opacity .35s ease;">
+      </div>
+      <div style="padding:20px 20px 22px;display:flex;flex-direction:column;flex:1;">
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">Matka Style</h3>
+        <div style="font-family:'DM Mono',monospace;font-size:11.5px;color:var(--hp-muted,#8A8579);margin-top:6px;">Aluminium &middot; 5 Ltrs</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 18px;">
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Induction Base</span>
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Multiple Citri</span>
+        </div>
+        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+          <a href="ProductDetail.dc.html" style="display:inline-flex;align-items:center;gap:6px;color:var(--hp-ink,#1F2433);text-decoration:none;font-weight:600;font-size:13.5px;">Details <span style="font-family:'DM Mono',monospace;">&rarr;</span></a>
+          <a href="Contact.dc.html" style="text-decoration:none;color:var(--hp-onaccent,#fff);background:var(--hp-copper,#B87333);font-weight:600;font-size:13px;padding:9px 16px;border-radius:999px;">Enquire</a>
+        </div>
+      </div>
+    </article>
+    <article data-card data-cat="matka" style="opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1),border-color .35s ease,box-shadow .35s ease;background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="position:relative;background:var(--hp-imgbg,#F2EEE6);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:20px;">
+        <img src="images/products/matka.jpg" alt="HP Matka Style 7 Ltrs" style="max-width:90%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;">
+        <span style="position:absolute;left:14px;top:14px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--hp-accenttext,#B87333);background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:999px;padding:4px 11px;white-space:nowrap;">7 Ltrs</span>
+        <img data-wm src="assets/hp-monogram.svg" style="position:absolute;right:14px;bottom:14px;width:26px;opacity:.32;transition:opacity .35s ease;">
+      </div>
+      <div style="padding:20px 20px 22px;display:flex;flex-direction:column;flex:1;">
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">Matka Style</h3>
+        <div style="font-family:'DM Mono',monospace;font-size:11.5px;color:var(--hp-muted,#8A8579);margin-top:6px;">Aluminium &middot; 7 Ltrs</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 18px;">
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Induction Base</span>
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Multiple Citri</span>
+        </div>
+        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+          <a href="ProductDetail.dc.html" style="display:inline-flex;align-items:center;gap:6px;color:var(--hp-ink,#1F2433);text-decoration:none;font-weight:600;font-size:13.5px;">Details <span style="font-family:'DM Mono',monospace;">&rarr;</span></a>
+          <a href="Contact.dc.html" style="text-decoration:none;color:var(--hp-onaccent,#fff);background:var(--hp-copper,#B87333);font-weight:600;font-size:13px;padding:9px 16px;border-radius:999px;">Enquire</a>
+        </div>
+      </div>
+    </article>
+    <article data-card data-cat="contura" style="opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1),border-color .35s ease,box-shadow .35s ease;background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="position:relative;background:var(--hp-imgbg,#F2EEE6);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:20px;">
+        <img src="images/products/contura.jpg" alt="HP Contura Style 3 Ltrs" style="max-width:90%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;">
+        <span style="position:absolute;left:14px;top:14px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--hp-accenttext,#B87333);background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:999px;padding:4px 11px;white-space:nowrap;">3 Ltrs</span>
+        <img data-wm src="assets/hp-monogram.svg" style="position:absolute;right:14px;bottom:14px;width:26px;opacity:.32;transition:opacity .35s ease;">
+      </div>
+      <div style="padding:20px 20px 22px;display:flex;flex-direction:column;flex:1;">
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">Contura Style</h3>
+        <div style="font-family:'DM Mono',monospace;font-size:11.5px;color:var(--hp-muted,#8A8579);margin-top:6px;">Aluminium &middot; 3 Ltrs</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 18px;">
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Induction Base</span>
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Multiple Citri</span>
+        </div>
+        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+          <a href="ProductDetail.dc.html" style="display:inline-flex;align-items:center;gap:6px;color:var(--hp-ink,#1F2433);text-decoration:none;font-weight:600;font-size:13.5px;">Details <span style="font-family:'DM Mono',monospace;">&rarr;</span></a>
+          <a href="Contact.dc.html" style="text-decoration:none;color:var(--hp-onaccent,#fff);background:var(--hp-copper,#B87333);font-weight:600;font-size:13px;padding:9px 16px;border-radius:999px;">Enquire</a>
+        </div>
+      </div>
+    </article>
+    <article data-card data-cat="contura" style="opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1),border-color .35s ease,box-shadow .35s ease;background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;">
+      <div style="position:relative;background:var(--hp-imgbg,#F2EEE6);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:20px;">
+        <img src="images/products/contura.jpg" alt="HP Contura Style 5 Ltrs" style="max-width:90%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;">
+        <span style="position:absolute;left:14px;top:14px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--hp-accenttext,#B87333);background:var(--hp-surface,#fff);border:1px solid var(--hp-border,#E7E2D8);border-radius:999px;padding:4px 11px;white-space:nowrap;">5 Ltrs</span>
+        <img data-wm src="assets/hp-monogram.svg" style="position:absolute;right:14px;bottom:14px;width:26px;opacity:.32;transition:opacity .35s ease;">
+      </div>
+      <div style="padding:20px 20px 22px;display:flex;flex-direction:column;flex:1;">
+        <h3 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--hp-ink,#1F2433);">Contura Style</h3>
+        <div style="font-family:'DM Mono',monospace;font-size:11.5px;color:var(--hp-muted,#8A8579);margin-top:6px;">Aluminium &middot; 5 Ltrs</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 18px;">
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Induction Base</span>
+          <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--hp-body,#52586A);background:#F4F0E8;border-radius:6px;padding:4px 9px;">+ Multiple Citri</span>
+        </div>
+        <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+          <a href="ProductDetail.dc.html" style="display:inline-flex;align-items:center;gap:6px;color:var(--hp-ink,#1F2433);text-decoration:none;font-weight:600;font-size:13.5px;">Details <span style="font-family:'DM Mono',monospace;">&rarr;</span></a>
+          <a href="Contact.dc.html" style="text-decoration:none;color:var(--hp-onaccent,#fff);background:var(--hp-copper,#B87333);font-weight:600;font-size:13px;padding:9px 16px;border-radius:999px;">Enquire</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+  <div data-empty style="display:none;max-width:1180px;margin:30px auto 0;text-align:center;color:var(--hp-muted,#8A8579);font-family:'DM Mono',monospace;font-size:13px;">No products in this category.</div>
+</section>
+
+<!-- CUSTOM ORDERS BANNER -->
+<section style="background:var(--hp-copper,#B87333);position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(60% 120% at 80% 0%,rgba(255,255,255,.16),transparent 60%);"></div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;padding:clamp(50px,6vw,80px) clamp(20px,5vw,64px);display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between;">
+    <div>
+      <h2 style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(26px,3.4vw,40px);color:var(--hp-onaccent,#fff);line-height:1.12;max-width:22ch;">Need a specific size or configuration?</h2>
+      <p style="color:var(--hp-onaccent,#fff);opacity:.85;font-size:16px;margin:12px 0 0;">We take bulk and custom orders — tell us what your catalogue needs.</p>
+    </div>
+    <a href="Contact.dc.html" style="display:inline-flex;align-items:center;gap:10px;background:#1A2340;color:#fff;text-decoration:none;font-weight:600;font-size:16px;padding:16px 32px;border-radius:999px;box-shadow:0 14px 30px -12px rgba(0,0,0,.5);">Request a Quote <span style="font-family:'DM Mono',monospace;">&rarr;</span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#161E38;position:relative;overflow:hidden;padding:clamp(50px,7vw,80px) clamp(20px,5vw,64px) 0;">
+  <div style="position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);font-family:'Bricolage Grotesque',sans-serif;font-weight:900;font-size:min(40vw,520px);color:#fff;opacity:.04;line-height:1;pointer-events:none;">HP</div>
+  <div style="position:relative;max-width:1180px;margin:0 auto 44px;display:flex;flex-wrap:wrap;align-items:center;gap:22px;background:#FFFFFF;border-radius:18px;padding:22px 26px;">
+    <div style="flex:0 0 auto;display:flex;align-items:center;justify-content:center;"><img src="assets/make-in-india-lion.png" alt="Make in India — is a lion's step" style="height:62px;width:auto;display:block;"></div>
+    <div style="flex:1;min-width:240px;">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:#B87333;margin-bottom:6px;">PROUDLY MADE IN INDIA</div>
+      <p style="margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(16px,1.6vw,19px);line-height:1.4;color:#1A2340;">H.P. Industries is a proud participant in the <strong style="color:#B87333;">Make in India</strong> initiative — manufacturing premium aluminium cookware on home soil since 2007.</p>
+    </div>
+  </div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:48px;padding-bottom:46px;">
+    <div>
+      <div style="display:flex;align-items:center;gap:13px;margin-bottom:18px;"><img src="assets/hp-monogram-white.svg" style="width:44px;height:44px;"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px;color:#fff;">H.P. Industries</span></div>
+      <p style="font-family:'Bricolage Grotesque',sans-serif;font-style:italic;color:rgba(255,255,255,.7);font-size:16px;line-height:1.5;max-width:30ch;margin:0 0 14px;">Crafted for Every Kitchen. Built to Last.</p>
+      <span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--hp-copper,#D79A5B);">EST. 2007 &middot; MADE IN INDIA</span>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--hp-copper,#D79A5B);margin-bottom:18px;">QUICK LINKS</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="Home.dc.html#about" style="color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;">About</a>
+        <a href="Products.dc.html" style="color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;">Products</a>
+        <a href="Home.dc.html#safety" style="color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;">Safety &amp; Quality</a>
+        <a href="Contact.dc.html" style="color:rgba(255,255,255,.78);text-decoration:none;font-size:14px;">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--hp-copper,#D79A5B);margin-bottom:18px;">CONTACT</div>
+      <div style="display:flex;flex-direction:column;gap:12px;color:rgba(255,255,255,.78);font-size:14px;line-height:1.5;">
+        <span>Uttar Pradesh, India</span><span>+91-8285482863</span><span>hridyanandsingh58@gmail.com</span>
+        <span style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,.55);">GST &middot; 09AUGPS1995L1ZR</span>
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;max-width:1180px;margin:0 auto;border-top:1px solid rgba(255,255,255,.12);padding:20px 0 28px;display:flex;flex-wrap:wrap;gap:10px 26px;justify-content:space-between;align-items:center;">
+    <div style="display:flex;align-items:center;gap:9px;"><span style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.5);">THEME</span><div style="position:relative;"><select data-theme-select aria-label="Color theme" style="appearance:none;-webkit-appearance:none;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 26px 8px 13px;cursor:pointer;"><option value="lime-light" style="color:#1A2340;">Lime · Light</option><option value="lime-dark" style="color:#1A2340;">Lime · Dark</option><option value="blue-light" style="color:#1A2340;">Electric Blue · Light</option><option value="blue-dark" style="color:#1A2340;">Electric Blue · Dark</option><option value="pink-light" style="color:#1A2340;">Hot Pink · Light</option><option value="pink-dark" style="color:#1A2340;">Hot Pink · Dark</option><option value="yellow-light" style="color:#1A2340;">Neon Yellow · Light</option><option value="yellow-dark" style="color:#1A2340;">Neon Yellow · Dark</option><option value="orange-light" style="color:#1A2340;">Orange · Light</option><option value="orange-dark" style="color:#1A2340;">Orange · Dark</option></select><span style="position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:#fff;font-size:9px;">&#9662;</span></div></div><span style="font-family:'DM Mono',monospace;font-size:11.5px;color:rgba(255,255,255,.5);">GST &middot; 09AUGPS1995L1ZR</span>
+    <span style="font-family:'DM Mono',monospace;font-size:11.5px;color:rgba(255,255,255,.5);">© 2024 M/S H.P. Industries</span>
+    <span style="font-family:'DM Mono',monospace;font-size:11.5px;color:rgba(255,255,255,.5);">Made in India</span>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;theme&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;copper&quot;, &quot;forest&quot;, &quot;indigo&quot;, &quot;terracotta&quot;,&quot;slate&quot;,&quot;plum&quot;], &quot;default&quot;: &quot;orange-light&quot; }
+}">
+class Component extends DCLogic {
+  themes = {
+    'lime-light': {'accent':'#4BFD00','accentText':'#2C8A00','onaccent':'#0C2200','ink':'#14181F','body':'#41485A','muted':'#888FA0','warm':'#E4F8D6','bg':'#F4FEEF','surface':'#FFFFFF','imgbg':'#F0EFF4','border':'#E5EBDD','navbg':'rgba(244,254,239,.9)','safe':'#ECF5EF','safeborder':'#CDE6D6'},
+    'lime-dark': {'accent':'#4BFD00','accentText':'#7CFF45','onaccent':'#0C2200','ink':'#F1F8EE','body':'#C7D3BE','muted':'#8C9A82','warm':'#141C0E','bg':'#0D140A','surface':'#161E12','imgbg':'#EEF4E9','border':'#2B3A22','navbg':'rgba(13,20,10,.86)','safe':'#16241A','safeborder':'#2B3D2B'},
+    'blue-light': {'accent':'#0096FF','accentText':'#0077CC','onaccent':'#FFFFFF','ink':'#14181F','body':'#41485A','muted':'#888FA0','warm':'#D7ECFB','bg':'#EEF7FF','surface':'#FFFFFF','imgbg':'#EFF1F6','border':'#DCE6EF','navbg':'rgba(238,247,255,.9)','safe':'#ECF5EF','safeborder':'#CDE6D6'},
+    'blue-dark': {'accent':'#0096FF','accentText':'#4FB8FF','onaccent':'#FFFFFF','ink':'#EEF4FB','body':'#BFCBDB','muted':'#8492A4','warm':'#121B28','bg':'#0A1018','surface':'#15202E','imgbg':'#E9EEF4','border':'#233448','navbg':'rgba(10,16,24,.86)','safe':'#102320','safeborder':'#273A45'},
+    'pink-light': {'accent':'#F317FF','accentText':'#C40ECF','onaccent':'#FFFFFF','ink':'#1A1420','body':'#4C4252','muted':'#928294','warm':'#F7D8F9','bg':'#FDEFFE','surface':'#FFFFFF','imgbg':'#F3EFF4','border':'#ECDCEF','navbg':'rgba(253,239,254,.9)','safe':'#ECF5EF','safeborder':'#CDE6D6'},
+    'pink-dark': {'accent':'#F317FF','accentText':'#FF6BFF','onaccent':'#FFFFFF','ink':'#F8EEFA','body':'#D3C2D8','muted':'#9C82A0','warm':'#1E1322','bg':'#160A18','surface':'#241629','imgbg':'#F1EAF2','border':'#3A2A40','navbg':'rgba(22,10,24,.86)','safe':'#1E2418','safeborder':'#3A2A40'},
+    'yellow-light': {'accent':'#FFFB00','accentText':'#8F7A00','onaccent':'#1A1900','ink':'#1B1A12','body':'#4E4A36','muted':'#928E73','warm':'#FBF4C4','bg':'#FFFEEA','surface':'#FFFFFF','imgbg':'#F2F1E6','border':'#E9E6C8','navbg':'rgba(255,254,234,.9)','safe':'#ECF5EF','safeborder':'#CDE6D6'},
+    'yellow-dark': {'accent':'#FFFB00','accentText':'#FFFB00','onaccent':'#1A1900','ink':'#F8F8EE','body':'#CFCEBE','muted':'#98978B','warm':'#1A1A0E','bg':'#14140A','surface':'#20200F','imgbg':'#F3F2E8','border':'#38381F','navbg':'rgba(20,20,10,.86)','safe':'#20241A','safeborder':'#38381F'},
+    'orange-light': {'accent':'#FFA23A','accentText':'#C2660E','onaccent':'#2A1500','ink':'#1E160E','body':'#52473C','muted':'#9A8E7C','warm':'#FBE6CE','bg':'#FFF6EC','surface':'#FFFFFF','imgbg':'#F2EEE6','border':'#ECDFCB','navbg':'rgba(255,246,236,.9)','safe':'#ECF5EF','safeborder':'#CDE6D6'},
+    'orange-dark': {'accent':'#FFA23A','accentText':'#FFB45C','onaccent':'#2A1500','ink':'#F8F2EA','body':'#D3C7B8','muted':'#9C8E7C','warm':'#1E160E','bg':'#16110A','surface':'#261C10','imgbg':'#F4EEE6','border':'#3C2E1B','navbg':'rgba(22,17,10,.86)','safe':'#24201A','safeborder':'#3C2E1B'}
+  };
+  state = { cat: 'all' };
+
+  componentDidMount() {
+    this.rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.applyTheme();
+    this.bind();
+  }
+  componentDidUpdate() { this.applyTheme(); }
+
+  currentTheme() {
+    let t = null;
+    try { t = localStorage.getItem('hp-theme'); } catch (e) {}
+    if (!t || !this.themes[t]) t = this.props.theme || 'orange-light';
+    return t;
+  }
+  applyTheme() {
+    const th = this.themes[this.currentTheme()] || this.themes['orange-light'];
+    const r = document.documentElement.style;
+    const set = (k, v) => { if (v) r.setProperty(k, v); };
+    set('--hp-copper', th.accent); set('--hp-ink', th.ink); set('--hp-warm', th.warm);
+    set('--hp-bg', th.bg); set('--hp-surface', th.surface); set('--hp-imgbg', th.imgbg);
+    set('--hp-body', th.body); set('--hp-muted', th.muted); set('--hp-border', th.border);
+    set('--hp-navbg', th.navbg); set('--hp-safe', th.safe); set('--hp-safeborder', th.safeborder); set('--hp-accenttext', th.accentText); set('--hp-onaccent', th.onaccent);
+    document.querySelectorAll('[data-theme-select]').forEach(s => { if (s.value !== this.currentTheme()) s.value = this.currentTheme(); });
+  }
+  setTheme(name) {
+    if (!this.themes[name]) return;
+    try { localStorage.setItem('hp-theme', name); } catch (e) {}
+    this.applyTheme();
+  }
+
+  bind() {
+    const rm = this.rm;
+    // reveal cards
+    this.revealCards();
+
+    // theme selects
+    document.querySelectorAll('[data-theme-select]').forEach(s => { s.value = this.currentTheme(); s.addEventListener('change', () => this.setTheme(s.value)); });
+
+    // drawer
+    const burger = document.querySelector('[data-burger]');
+    const drawer = document.querySelector('[data-drawer]');
+    const setDrawer = (open) => {
+      if (!drawer) return;
+      drawer.setAttribute('data-open', open ? '1' : '0');
+      drawer.style.transform = open ? 'translateX(0)' : 'translateX(100%)';
+      drawer.style.opacity = open ? '1' : '0';
+      drawer.style.pointerEvents = open ? 'auto' : 'none';
+    };
+    if (burger) burger.addEventListener('click', () => setDrawer(drawer.getAttribute('data-open') !== '1'));
+    if (drawer) {
+      const close = drawer.querySelector('[data-close]');
+      if (close) close.addEventListener('click', () => setDrawer(false));
+      drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setDrawer(false)));
+    }
+
+    // responsive nav
+    const links = document.querySelector('[data-navlinks]');
+    const responsive = () => {
+      const narrow = window.innerWidth < 940;
+      if (links) links.style.display = narrow ? 'none' : 'flex';
+      if (burger) burger.style.display = narrow ? 'flex' : 'none';
+      this.moveUnderline();
+    };
+    window.addEventListener('resize', responsive, { passive: true });
+
+    // card hover
+    document.querySelectorAll('[data-card]').forEach(card => {
+      const wm = card.querySelector('[data-wm]');
+      card.addEventListener('mouseenter', () => { card.style.borderColor = 'var(--hp-copper,#B87333)'; card.style.boxShadow = '0 20px 40px -22px rgba(184,115,51,.5)'; card.style.transform = 'translateY(-4px)'; if (wm) wm.style.opacity = .75; });
+      card.addEventListener('mouseleave', () => { card.style.borderColor = 'var(--hp-border,#E7E2D8)'; card.style.boxShadow = 'none'; card.style.transform = 'none'; if (wm) wm.style.opacity = .32; });
+    });
+
+    // tabs
+    document.querySelectorAll('[data-tab]').forEach(tab => {
+      tab.addEventListener('click', () => this.setCat(tab.getAttribute('data-cat')));
+    });
+
+    responsive();
+    setTimeout(() => this.moveUnderline(), 60);
+  }
+
+  revealCards() {
+    const cards = [...document.querySelectorAll('[data-card]')];
+    if (this.rm) { cards.forEach(c => { c.style.opacity = 1; c.style.transform = 'none'; }); return; }
+    const io = new IntersectionObserver((es) => {
+      es.forEach(en => { if (en.isIntersecting) { const i = cards.indexOf(en.target); en.target.style.transitionDelay = Math.max(0, (i % 4)) * 70 + 'ms'; en.target.style.opacity = 1; en.target.style.transform = 'none'; io.unobserve(en.target); } });
+    }, { threshold: 0.1 });
+    cards.forEach(c => io.observe(c));
+  }
+
+  moveUnderline() {
+    const active = document.querySelector('[data-tab][data-active="1"]') || document.querySelector('[data-tab]');
+    const ul = document.querySelector('[data-underline]');
+    if (!active || !ul) return;
+    ul.style.left = active.offsetLeft + 'px';
+    ul.style.width = active.offsetWidth + 'px';
+  }
+
+  setCat(cat) {
+    this.setState({ cat });
+    document.querySelectorAll('[data-tab]').forEach(t => {
+      const on = t.getAttribute('data-cat') === cat;
+      t.setAttribute('data-active', on ? '1' : '0');
+      t.style.color = on ? 'var(--hp-ink,#1F2433)' : 'var(--hp-muted,#8A8579)';
+      t.style.fontWeight = on ? '600' : '500';
+    });
+    this.moveUnderline();
+    let shown = 0;
+    document.querySelectorAll('[data-card]').forEach(c => {
+      const match = cat === 'all' || c.getAttribute('data-cat') === cat;
+      c.style.display = match ? 'flex' : 'none';
+      if (match) shown++;
+    });
+    const empty = document.querySelector('[data-empty]');
+    if (empty) empty.style.display = shown ? 'none' : 'block';
+  }
+
+  renderVals() {
+    const products = [
+      { cat: 'standard', name: 'Standard Series', size: '3 Ltrs', img: 'images/products/standard.jpg', alt: 'HP Standard 3L cooker' },
+      { cat: 'standard', name: 'Standard Series', size: '5 Ltrs', img: 'images/products/standard.jpg', alt: 'HP Standard 5L cooker' },
+      { cat: 'standard', name: 'Standard Series', size: '7 Ltrs', img: 'images/products/standard.jpg', alt: 'HP Standard 7L cooker' },
+      { cat: 'matka', name: 'Matka Style', size: '3 Ltrs', img: 'images/products/matka.jpg', alt: 'HP Matka 3L cooker' },
+      { cat: 'matka', name: 'Matka Style', size: '5 Ltrs', img: 'images/products/matka.jpg', alt: 'HP Matka 5L cooker' },
+      { cat: 'matka', name: 'Matka Style', size: '7 Ltrs', img: 'images/products/matka.jpg', alt: 'HP Matka 7L cooker' },
+      { cat: 'contura', name: 'Contura Style', size: '3 Ltrs', img: 'images/products/contura.jpg', alt: 'HP Contura 3L cooker' },
+      { cat: 'contura', name: 'Contura Style', size: '5 Ltrs', img: 'images/products/contura.jpg', alt: 'HP Contura 5L cooker' }
+    ];
+    return { products };
+  }
+}
+</script>
+</body>
+</html>
