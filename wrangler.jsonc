@@ -3,7 +3,7 @@
   // (astro build -> ./dist), so there is NO SSR adapter and NO Worker script —
   // Cloudflare just serves the built files. Having this config present also
   // stops `wrangler deploy` from trying to auto-run `astro add cloudflare`.
-  "name": "hp-appliances",
+  "name": "hpappliances",
   "compatibility_date": "2026-07-14",
   "assets": {
     "directory": "./dist",
