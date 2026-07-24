@@ -39,10 +39,13 @@
     }
   },
   "gallery": [
-    { "img": "/images/gallery/factory-floor.png",  "caption": "HP · Factory Floor" },
-    { "img": "/images/gallery/product-lineup.png", "caption": "HP · Product Lineup" },
-    { "img": "/images/gallery/quality-check.png",  "caption": "HP · Quality Check" },
-    { "img": "/images/gallery/packaging.png",      "caption": "HP · Packaging" }
+    { "img": "/images/gallery/hp-pressure-cooker-product-lineup.png",  "caption": "HP · Product Lineup" },
+    { "img": "/images/gallery/hp-pressure-cooker-packaging.png",  "caption": "HP · Packaging" },
+    { "img": "/images/gallery/hp-pressure-cooker-quality-check.png",  "caption": "HP · Quality Check" },
+    { "img": "/images/gallery/hp-pressure-cooker-hydraulic-machine.jpeg",  "caption": "HP · Hydraulic Machine" },
+    { "img": "/images/gallery/hp-pressure-cooker-lathe-machine.jpeg", "caption": "HP · Lathe Machine" },
+    { "img": "/images/gallery/hp-pressure-cooker-buffing-and-polishing-machine.jpeg",  "caption": "HP · Buffing & Polishing Machine" },
+    { "img": "/images/gallery/hp-pressure-cooker-spinning-machine.jpeg",      "caption": "HP · Spinning Machine" }
   ],
   "stats": [
     { "value": 17,  "suffix": "+", "label": "YEARS OF CRAFT" },

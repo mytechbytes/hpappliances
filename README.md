@@ -47,7 +47,7 @@ export function getStaticPaths() {
 ```
 
 At build, Astro renders that template once per product in `products.json`, writing
-`dist/products/contura.html`, `standard.html`, `matka.html`, … with **all content
+`dist/products/hp-contura-pressure-cooker.html`, `hp-classic-pressure-cooker.html`, `hp-handi-pressure-cooker.html`, … with **all content
 already in the markup**. Add a product to `products.json` → on the next build it
 gets its own page, a card on the listing + home, and related/style links — no HTML
 to write.

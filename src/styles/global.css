@@ -156,14 +156,14 @@ body:has(.hp-drawer-toggle:checked) { overflow: hidden; }
    Pure-CSS product category filter (radio + sibling selectors)
    ============================================================ */
 .hp-filter [data-card] { display: flex; }
-#cat-standard:checked ~ .hp-grid-wrap [data-card]:not([data-cat="standard"]),
-#cat-matka:checked    ~ .hp-grid-wrap [data-card]:not([data-cat="matka"]),
+#cat-classic:checked ~ .hp-grid-wrap [data-card]:not([data-cat="classic"]),
+#cat-handi:checked    ~ .hp-grid-wrap [data-card]:not([data-cat="handi"]),
 #cat-contura:checked  ~ .hp-grid-wrap [data-card]:not([data-cat="contura"]) { display: none; }
 
 .hp-tab { font-family: var(--font-sans); font-size: 15px; font-weight: 500; color: var(--hp-muted); padding: 20px 2px; cursor: pointer; border-bottom: 2.5px solid transparent; transition: color .25s ease, border-color .25s ease; }
 #cat-all:checked      ~ .hp-tabbar label[for="cat-all"],
-#cat-standard:checked ~ .hp-tabbar label[for="cat-standard"],
-#cat-matka:checked    ~ .hp-tabbar label[for="cat-matka"],
+#cat-classic:checked ~ .hp-tabbar label[for="cat-classic"],
+#cat-handi:checked    ~ .hp-tabbar label[for="cat-handi"],
 #cat-contura:checked  ~ .hp-tabbar label[for="cat-contura"] { color: var(--hp-ink); font-weight: 600; border-bottom-color: var(--hp-copper); }
 
 /* ============================================================
