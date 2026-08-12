@@ -37,7 +37,7 @@ const rightCallouts = [
   <!-- HERO -->
   <header id="top" class="relative flex items-center overflow-hidden" style="min-height:92vh;background:linear-gradient(160deg,var(--hp-bg) 0%,var(--hp-warm) 100%);">
     <div class="absolute pointer-events-none" style="top:-10%;right:-6%;width:60vw;height:60vw;max-width:760px;max-height:760px;background:radial-gradient(circle,color-mix(in srgb,var(--hp-copper) 16%,transparent),transparent 62%);"></div>
-    <div class="relative z-[3] w-full mx-auto grid items-center gap-12 max-[900px]:grid-cols-1" style="max-width:1180px;padding:110px clamp(20px,5vw,64px) 70px;grid-template-columns:1.05fr .95fr;">
+    <div class="relative z-[3] w-full mx-auto grid items-center gap-12 max-[900px]:grid-cols-1!" style="max-width:1180px;padding:110px clamp(20px,5vw,64px) 70px;grid-template-columns:1.05fr .95fr;">
       <div>
         <div data-anim class="font-mono text-[13px] tracking-[4px] text-accent-text mb-6" style="--d:.15s">H·P INDUSTRIES &nbsp;·&nbsp; EST. 2007</div>
         <h1 class="m-0 font-display font-extrabold text-ink" style="font-size:clamp(40px,5.6vw,72px);line-height:1.05;letter-spacing:-1px;">
@@ -74,7 +74,7 @@ const rightCallouts = [
 
   <!-- TRUST / STATS -->
   <section style="background:var(--hp-warm);border-top:1px solid var(--hp-border);border-bottom:1px solid var(--hp-border);">
-    <div class="mx-auto grid gap-[30px] max-[640px]:grid-cols-2" style="max-width:1180px;padding:48px clamp(20px,5vw,64px);grid-template-columns:repeat(4,1fr);">
+    <div class="mx-auto grid gap-[30px] max-[640px]:grid-cols-2!" style="max-width:1180px;padding:48px clamp(20px,5vw,64px);grid-template-columns:repeat(4,1fr);">
       {site.stats.map((s, i) => (
         <div data-reveal data-delay={i * 80}>
           <div class="font-display font-bold text-ink leading-none" style="font-size:clamp(34px,4vw,50px);"><span data-count={s.value} data-suffix={s.suffix}>0</span></div>
@@ -92,7 +92,7 @@ const rightCallouts = [
         <h2 class="hp-h2">Three cooker styles, eight sizes</h2>
         <p class="text-muted text-[17px] leading-[1.6] mt-[18px]">Each cooker is forged from premium aluminium and finished with HP's signature locking and safety system.</p>
       </div>
-      <div class="grid gap-[26px] max-[860px]:grid-cols-1" style="grid-template-columns:repeat(3,1fr);">
+      <div class="grid gap-[26px] max-[860px]:grid-cols-1!" style="grid-template-columns:repeat(3,1fr);">
         {featured.map((p) => <ProductCard product={p} variant="highlight" />)}
       </div>
     </div>
@@ -108,7 +108,7 @@ const rightCallouts = [
         <p class="text-muted text-base leading-[1.6] mt-4">Six engineered components, each branded and tested — annotated here on the HP Contura.</p>
       </div>
     </div>
-    <div class="relative mx-auto mt-[18px] grid items-center max-[820px]:grid-cols-1 max-[820px]:justify-items-center" style="max-width:1080px;grid-template-columns:1fr minmax(260px,400px) 1fr;gap:clamp(12px,3vw,40px);">
+    <div class="relative mx-auto mt-[18px] grid items-center max-[820px]:grid-cols-1! max-[820px]:justify-items-center" style="max-width:1080px;grid-template-columns:1fr minmax(260px,400px) 1fr;gap:clamp(12px,3vw,40px);">
       <div class="flex flex-col items-end max-[820px]:items-center" style="gap:clamp(26px,5vh,52px);">
         {leftCallouts.map((cl, i) => (
           <div data-callout class="flex items-center gap-[13px] w-full justify-end" style={`--seq:${leftSeq[i]};--fx:-14px;`}>
@@ -180,7 +180,7 @@ const rightCallouts = [
 
   <!-- ABOUT TEASER -->
   <section class="relative overflow-hidden" style="background:var(--hp-warm);padding:clamp(70px,9vw,118px) clamp(20px,5vw,64px);">
-    <div class="relative mx-auto grid items-center max-[820px]:grid-cols-1" style="max-width:1180px;grid-template-columns:1fr 1fr;gap:64px;">
+    <div class="relative mx-auto grid items-center max-[820px]:grid-cols-1! max-[820px]:gap-10" style="max-width:1180px;grid-template-columns:1fr 1fr;gap:64px;">
       <div data-reveal class="pl-[30px]" style="border-left:3px solid var(--hp-copper);">
         <p class="font-display italic font-medium text-ink m-0 mb-[26px]" style="font-size:clamp(22px,2.6vw,31px);line-height:1.4;">We don't just assemble cookers — we build trust into every weld, seal and valve.</p>
         <div class="flex items-center gap-[14px]">

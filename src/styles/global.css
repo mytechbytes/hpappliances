@@ -144,6 +144,18 @@ html.js [data-reveal].is-visible { opacity: 1; transform: none; }
   .hp-gal:hover .hp-gal-ov { opacity: 1; }
 }
 
+/* Slightly more compact CTA buttons on phones. The per-call-site
+   Tailwind padding/text utilities are desktop-tuned; this unlayered
+   rule outranks them below 640px so buttons don't feel oversized. */
+@media (max-width: 640px) {
+  .hp-btn-primary,
+  .hp-btn-outline {
+    padding: 11px 20px !important;
+    font-size: 14px !important;
+    gap: 8px;
+  }
+}
+
 /* ============================================================
    Pure-CSS mobile drawer (checkbox toggle, no JS)
    ============================================================ */
