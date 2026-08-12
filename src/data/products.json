@@ -17,17 +17,11 @@
       "sizes": ["3 Ltrs", "5 Ltrs"],
       "addons": ["Induction Base", "Multiple Citri"],
       "featured": true,
-      "spin": { "prefix": "/images/products/360/contura", "frames": 24 },
       "gallery": [
-        "/images/products/360/contura-03.png",
-        "/images/products/360/contura-05.png",
-        "/images/products/360/contura-08.png",
-        "/images/products/360/contura-10.png",
-        "/images/products/360/contura-13.png",
-        "/images/products/360/contura-15.png",
-        "/images/products/360/contura-18.png",
-        "/images/products/360/contura-20.png",
-        "/images/products/360/contura-23.png"
+        "/images/products/details/contura-lid.png",
+        "/images/products/details/contura-logo.png",
+        "/images/products/details/contura-handle.png",
+        "/images/products/details/contura-base.png"
       ],
       "description": "Contoured curves with a modern stay-cool grip — compact, elegant, and engineered with HP's full TriLock™ safety system. Forged from premium aluminium for even, efficient heat."
     },
@@ -41,17 +35,11 @@
       "sizes": ["3 Ltrs", "5 Ltrs", "7 Ltrs"],
       "addons": ["Induction Base", "Multiple Citri"],
       "featured": true,
-      "spin": { "prefix": "/images/products/360/classic", "frames": 24 },
       "gallery": [
-        "/images/products/360/classic-03.png",
-        "/images/products/360/classic-05.png",
-        "/images/products/360/classic-08.png",
-        "/images/products/360/classic-10.png",
-        "/images/products/360/classic-13.png",
-        "/images/products/360/classic-15.png",
-        "/images/products/360/classic-18.png",
-        "/images/products/360/classic-20.png",
-        "/images/products/360/classic-23.png"
+        "/images/products/details/classic-lid.png",
+        "/images/products/details/classic-logo.png",
+        "/images/products/details/classic-handle.png",
+        "/images/products/details/classic-base.png"
       ],
       "description": "The classic straight-wall profile — dependable everyday cooking with even heat distribution and HP's signature locking and safety system. Premium aluminium build."
     },
@@ -65,17 +53,11 @@
       "sizes": ["3 Ltrs", "5 Ltrs", "7 Ltrs"],
       "addons": ["Induction Base", "Multiple Citri"],
       "featured": true,
-      "spin": { "prefix": "/images/products/360/handi", "frames": 24 },
       "gallery": [
-        "/images/products/360/handi-03.png",
-        "/images/products/360/handi-05.png",
-        "/images/products/360/handi-08.png",
-        "/images/products/360/handi-10.png",
-        "/images/products/360/handi-13.png",
-        "/images/products/360/handi-15.png",
-        "/images/products/360/handi-18.png",
-        "/images/products/360/handi-20.png",
-        "/images/products/360/handi-23.png"
+        "/images/products/details/handi-lid.png",
+        "/images/products/details/handi-logo.png",
+        "/images/products/details/handi-handle.png",
+        "/images/products/details/handi-base.png"
       ],
       "description": "The rounded handi silhouette — a generous belly and traditional form, finished with HP's TriLock™ lid and SafeValve™ release. Premium aluminium build."
     }

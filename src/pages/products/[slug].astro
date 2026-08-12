@@ -9,7 +9,6 @@ export function getStaticPaths() {
 }
 
 const { product: p } = Astro.props;
-const pad = (n) => String(n).padStart(2, '0');
 
 // Gallery = hero shot + the explicit thumbnail image paths from products.json.
 const images = [p.image, ...p.gallery];
@@ -134,27 +133,6 @@ const specRows = [
     </div>
   </section>
 
-  <!-- 360 VIEWER -->
-  <section class="bg-bg" style="padding:clamp(56px,7vw,90px) clamp(20px,5vw,64px);">
-    <div class="mx-auto text-center" style="max-width:1180px;">
-      <div class="hp-eyebrow mb-[14px]" style="letter-spacing:3px;">360° VIEW</div>
-      <h2 class="m-0 font-display font-bold text-ink" style="font-size:clamp(26px,3.2vw,38px);">See it from every angle</h2>
-      <p class="text-body text-base leading-[1.6] mt-[14px] mx-auto max-w-[46ch]">Drag the <span class="text-accent-text font-semibold">{p.name}</span> left or right to spin it through a full 360°.</p>
-      <div
-        data-360stage
-        data-prefix={p.spin.prefix}
-        data-frames={p.spin.frames}
-        class="relative mx-auto mt-8 rounded-[24px] overflow-hidden select-none"
-        style="max-width:520px;aspect-ratio:1;background:var(--hp-imgbg);border:1px solid var(--hp-border);cursor:grab;touch-action:pan-y;"
-      >
-        <img data-360img src={`${p.spin.prefix}-${pad(1)}.png`} alt={`${p.name} 360 view`} draggable="false" class="w-full h-full object-contain block pointer-events-none" />
-        <span class="absolute top-4 right-4 inline-flex items-center gap-[6px] font-mono text-[11px] tracking-[1px] text-white rounded-full px-3 py-[6px]" style="background:rgba(26,35,64,.7);">360&deg;</span>
-        <div data-360hint class="absolute left-1/2 bottom-[18px] -translate-x-1/2 inline-flex items-center gap-2 font-mono text-[11px] tracking-[1px] text-white rounded-full px-[15px] py-2 transition-opacity duration-300 pointer-events-none" style="background:rgba(26,35,64,.7);">&#8634; DRAG TO ROTATE</div>
-      </div>
-      <div class="mx-auto mt-4 h-1 rounded-full overflow-hidden" style="max-width:520px;background:var(--hp-border);"><div data-360bar class="h-full" style="width:4%;background:var(--hp-copper);transition:width .08s linear;"></div></div>
-    </div>
-  </section>
-
   <!-- RELATED -->
   <section style="padding:clamp(56px,7vw,90px) clamp(20px,5vw,64px);">
     <div class="mx-auto" style="max-width:1180px;">
@@ -172,8 +150,4 @@ const specRows = [
       </div>
     </div>
   </section>
-
-  <script>
-    import '../../scripts/viewer360.js';
-  </script>
 </Base>
